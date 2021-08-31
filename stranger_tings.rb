@@ -1,3 +1,5 @@
+# Stranger Things: Showtune as seen on Netflix plus Beats
+
 use_bpm 69
 
 tick = 0.25
