@@ -13,7 +13,7 @@ end
 
 define :hook do
   
-  use_synth :saw
+  use_synth :pretty_bell
   
   play :Ds5, release: 2.5
   sleep 2
@@ -51,8 +51,6 @@ define :hook do
   sleep 2
   play :C5, release: 0.5
 end
-
-hook
 
 define :gdg_prog do
   play :Gs4
@@ -99,18 +97,19 @@ define :fcf_prod do
   sleep 0.8
 end
 
+define :progression do
+  gdg_prog
+  gdg_prog
+  fdf_prod
+  fcf_prod
+  fdf_prod
+  fcf_prod
+end
+
+use_synth :prophet
+progression
+hook
 use_synth :supersaw
-
-gdg_prog
-
-gdg_prog
-
-fdf_prod
-
-fcf_prod
-
-fdf_prod
-
-fcf_prod
+progression
 
 sample :ambi_lunar_land, beat_stretch: 3
