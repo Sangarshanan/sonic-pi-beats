@@ -2,8 +2,9 @@
 
 use_bpm 100
 
-use_synth :prophet
+####  Intro  ####
 
+use_synth :prophet
 notes = (ring :f5, :cs5, :c5)
 quarter = 0.25
 half = 0.5
@@ -65,5 +66,3 @@ sleep half
   play :as4, amp: half
   sleep half
 end
-
-
