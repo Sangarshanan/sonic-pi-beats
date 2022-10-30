@@ -60,3 +60,21 @@ live_loop :drum2 do
   end
 end
 
+# Sample 3 (Seed based beats)
+
+with_fx :reverb, mix: 0.2 do
+  live_loop :drums do
+    use_random_seed 500
+    16.times do
+      sample :bass_hit_c, rate: 2, cutoff: 120 if rand < 0.35
+      sleep 0.125
+    end
+  end
+end
+
+
+live_loop :bd do
+  sample :bd_haus, cutoff: 100, amp: 2
+  sleep 0.5
+end
+
