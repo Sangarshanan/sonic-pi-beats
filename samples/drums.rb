@@ -60,7 +60,7 @@ live_loop :drum2 do
   end
 end
 
-# Sample 3 (Seed based beats)
+# Seed based beats
 
 with_fx :reverb, mix: 0.2 do
   live_loop :drums do
@@ -78,3 +78,19 @@ live_loop :bd do
   sleep 0.5
 end
 
+# Basic loop
+
+live_loop :bass_drum do
+  sample :bd_haus, cutoff: 70, amp: 1.5
+  sleep 0.5
+end
+
+# Sliced Loop (Replace sample: :loop_industrial, :loop_amen)
+
+live_loop :sliced_tabla do
+  n = 8
+  s =  line(0, 1, steps: n).choose
+  f = s + (1.0 / n)
+  sample :loop_tabla, beat_stretch: n, start: s, finish: f
+  sleep 2.0  / n
+end
