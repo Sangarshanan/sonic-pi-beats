@@ -7,12 +7,6 @@ with_fx :reverb, room: 1 do
   sleep 8
 end
 
-# Porcupine Tree vibes
-live_loop :beats do
-  sample :guit_em9, rate: [0.25, 0.5, -1].choose, amp: 2
-  sleep 8
-end
-
 # Rewind
 sample :ambi_lunar_land, beat_stretch: 8
 
@@ -28,3 +22,6 @@ sample :vinyl_backspin, beat_stretch: 5, rate: -1
 
 # plup
 sample :elec_filt_snare, rate: -1
+
+# random glitch bass
+sample :glitch_bass_g, rate: [0.25, 0.5, -1].choose, amp: 2
