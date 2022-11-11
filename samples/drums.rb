@@ -94,3 +94,14 @@ live_loop :sliced_tabla do
   sample :loop_tabla, beat_stretch: n, start: s, finish: f
   sleep 2.0  / n
 end
+
+
+# insk insk
+
+live_loop :beats do
+  sample :bd_tek, amp: 0.4
+  with_fx :echo, phase: 0.125, mix: 0.4 do
+    sample  :drum_cymbal_soft, sustain: 0, release: 0.1, amp: 0.4
+    sleep 0.5
+  end
+end
