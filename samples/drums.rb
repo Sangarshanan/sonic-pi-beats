@@ -105,3 +105,35 @@ live_loop :beats do
     sleep 0.5
   end
 end
+
+
+# LOFI
+
+# Soul beat
+
+use_bpm 80
+
+grid1 = [1,0,1,0,   2,0,0,1,   1,0,1,0,   2,0,0,0]
+grid2 = [1,0,1,0,   2,0,0,1,   1,2,1,0,   2,0,0,0]
+
+define :soul_beat do |grid|
+  16.times do |index|
+    puts index, grid[index]
+    sample :drum_heavy_kick if grid[index] == 1
+    sample :drum_snare_soft if grid[index] == 2
+    sleep 0.25
+  end
+end
+
+
+live_loop :drum1 do
+  soul_beat grid1
+  soul_beat grid2
+end
+
+
+live_loop :hi_hat do
+  sample :drum_cymbal_closed
+  sleep 0.5
+end
+
