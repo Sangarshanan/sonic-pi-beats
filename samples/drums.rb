@@ -6,7 +6,9 @@ use_bpm 98
 # Closed hat - :drum_cymbal_closed
 # Open Hat - :drum_cymbal_open, sustain: 0.3
 
-# Sample 1
+# Chill beats
+
+# Sample 1 
 
 grid1 = [1,0,0,0,   2,0,0,1,   0,0,1,0,   2,0,0,1]
 
@@ -60,7 +62,27 @@ live_loop :drum2 do
   end
 end
 
-# Seed based beats
+
+# Insk Insk No
+
+# 1
+
+live_loop :bass_drum do
+  sample :bd_haus, cutoff: 70, amp: 1.5
+  sleep 0.5
+end
+
+# 2
+
+live_loop :beats do
+  sample :bd_tek, amp: 0.4
+  with_fx :echo, phase: 0.125, mix: 0.4 do
+    sample  :drum_cymbal_soft, sustain: 0, release: 0.1, amp: 0.4
+    sleep 0.5
+  end
+end
+
+# 3 (seed based)
 
 with_fx :reverb, mix: 0.2 do
   live_loop :drums do
@@ -72,18 +94,35 @@ with_fx :reverb, mix: 0.2 do
   end
 end
 
-
 live_loop :bd do
   sample :bd_haus, cutoff: 100, amp: 2
   sleep 0.5
 end
 
-# Basic loop
 
-live_loop :bass_drum do
-  sample :bd_haus, cutoff: 70, amp: 1.5
-  sleep 0.5
+# Classic house beat
+
+use_bpm 120
+
+grid1 = [1,0,2,0,   1,0,2,0,   1,0,2,0,   1,0,2,0]
+
+live_loop :drum do
+  16.times do |index|
+    puts index, grid1[index]
+    sample :drum_heavy_kick if grid1[index] == 1
+    sample :drum_splash_hard, rate: 3, beat_stretch: 0.5 if grid1[index] == 2
+    
+    sleep 0.25
+  end
 end
+
+live_loop :clap do
+  sample :sn_generic, rate: 3, amp: 0.7
+  sleep 2
+end
+
+
+# Random electronic misc Beat
 
 # Sliced Loop (Replace sample: :loop_industrial, :loop_amen)
 
@@ -96,18 +135,7 @@ live_loop :sliced_tabla do
 end
 
 
-# insk insk
-
-live_loop :beats do
-  sample :bd_tek, amp: 0.4
-  with_fx :echo, phase: 0.125, mix: 0.4 do
-    sample  :drum_cymbal_soft, sustain: 0, release: 0.1, amp: 0.4
-    sleep 0.5
-  end
-end
-
-
-# LOFI
+# LOFI beats
 
 # Soul beat
 
@@ -136,4 +164,3 @@ live_loop :hi_hat do
   sample :drum_cymbal_closed
   sleep 0.5
 end
-

@@ -27,3 +27,10 @@ with_fx :reverb do
     end
   end
 end
+
+# Scale with different sleeps
+live_loop :arp do
+  use_synth :fm
+  play (scale :g2, :major_pentatonic).tick(:foo), release: 0.1, amp: 0.5
+  sleep (ring 0.125, 0.25, 0.4).tick(:bar)
+end
