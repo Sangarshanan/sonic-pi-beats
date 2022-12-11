@@ -15,6 +15,18 @@ live_loop :bass do
     sleep 2
   end
 
+
+# ring of notes
+live_loop :bass do
+  nn = ring(67,62,60,62,64,67,60,62,67,69,62,64,67,69,62,64).tick(:i)
+  16.times do
+    if spread(5,16).tick(:ii)
+      synth :fm, note: nn-24, depth: 3, release: 1.5
+    end
+    sleep 0.25
+  end
+end
+
 # Randomised Seeds
 with_fx :reverb do
   live_loop :vortex do
