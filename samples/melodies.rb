@@ -30,3 +30,31 @@ with_fx :reverb, room: 1, release: 4, mix: 0.4 do
     sleep 4
 end
 end
+
+# Mod_saw notes
+
+live_loop :synths do
+  use_synth :mod_saw
+  use_synth_defaults amp: 0.5, attack: 0, sustain: 1, release: 0.25, mod_range: 12, mod_phase: 0.5, mod_invert_wave: 1
+  notes = (ring :F, :C, :D, :D, :G, :C, :D, :D)
+  notes.each do |n|
+    tick
+    play note(n, octave: 1), cutoff: (line 90, 130, steps: 16).look
+    play note(n, octave: 2), cutoff: (line 90, 130, steps: 32).look
+    sleep 1
+  end
+end
+
+
+# malfunction
+
+mel1 = ring(57,57,57,57,60,60,60,60)
+
+t1 = ring(0.75,0.75,1,1.5,0.75,0.75,1,1.5)
+
+live_loop :melody do
+  use_synth :piano
+  tick(:i)
+  play mel1.look(:i),sustain: 0.25, amp: 0.0001
+  sleep t1.look(:i)
+end

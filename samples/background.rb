@@ -30,8 +30,15 @@ live_loop :beats do
   sleep 2
 end
 
+# Random rate piano
+live_loop :piano, auto_cue: false do
+  with_fx :slicer, phase: 0.25, wave: 1 do
+    sample :ambi_piano, amp: 2, rate: [1,-1,2,1.5].choose
+    sleep 2
+  end
+end
+
 # Fx sound effects
 with_fx :wobble, phase: 2, cutoff_max: 80, cutoff_min: 20, mix: 0 do
   synth :dsaw, note: 20, release: 10, amp: 0.2
 end
-

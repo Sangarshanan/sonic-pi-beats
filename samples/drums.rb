@@ -164,3 +164,18 @@ live_loop :hi_hat do
   sample :drum_cymbal_closed
   sleep 0.5
 end
+
+
+# Random Misc
+
+live_loop :cash_register do
+  sample :perc_till, beat_stretch: 0.5
+  sleep 2
+end
+
+
+live_loop :beep do
+  sleep 1
+  sample :elec_beep, amp: 0.3
+  sleep 1
+end

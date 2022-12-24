@@ -49,5 +49,3 @@ live_loop :chords_with_bass do
     sleep 4
   end
 end
-
-
