@@ -1,5 +1,8 @@
+# https://soundcloud.com/rogue-entropy/astral-pipes
+
 use_bpm 100
 
+# https://rhasspy.github.io/larynx/local/fr-fr/gilles_le_blanc-glow_tts/samples/si_mon_tonton_tond_ton_tonton.wav
 live_loop :tonton do
   with_fx :autotuner, phase: 0.125, mix: 0.4 do
     sample "/Users/sangarshanan/Downloads/si_mon_tonton_tond_ton_tonton.wav", rate: -1, amp: 0.01, cutoff: 80
