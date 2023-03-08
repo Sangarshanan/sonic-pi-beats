@@ -58,3 +58,17 @@ live_loop :melody do
   play mel1.look(:i),sustain: 0.25, amp: 0.0001
   sleep t1.look(:i)
 end
+
+
+# flutey
+
+live_loop :melo do
+  tick(:i)
+  with_fx :echo, phase: 0.75, decay: 6, mix: 0.9 do
+    8.times do
+      tick(:ii)
+      synth :dtri, note: ring(61,63,56,58,51,52,58,59).look(:ii)+24, amp: 0.2
+      sleep ring(0.25,0.5).look(:ii)
+    end
+  end
+end

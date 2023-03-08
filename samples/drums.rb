@@ -179,3 +179,64 @@ live_loop :beep do
   sample :elec_beep, amp: 0.3
   sleep 1
 end
+
+
+# Trap beat
+
+kick1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks02.wav"
+kick2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks05.wav"
+snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Clap05.wav"
+hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats07.wav"
+hat2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats10.wav"
+
+k = [
+  [1, 0, 1, 1, 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 1, 0],
+  [1, 0, 0, 1, 2, 0, 0, 1, 1, 0, 0, 0, 2, 0, 1, 1],
+  [1, 1, 0, 1, 2, 1, 0, 0, 1, 1, 0, 0, 2, 0, 0, 2]
+]
+
+sleep 25
+live_loop :kick do
+  r = get[:r]
+  16.times do |i|
+    use_random_seed 132
+    sample kick2, amp: 1 if k[r][i] == 1
+    sample snare, amp: 1.5 if k[r][i] == 2
+    sleep 0.25
+  end
+end
+
+sleep 10
+define :h do |x, a, p, h|
+  density x do
+    sample h, amp: a, pan: p
+    sleep 1
+  end
+end
+
+live_loop :hat, sync: :kick do
+  
+  in_thread do
+    with_fx :echo, decay: 2 do
+      h 2, 0.5, rrand(-0.75, 0.75), hat1
+    end
+  end
+  in_thread do
+    h [4, 4, 4, 6, 6, 8, 12, 3].choose, 0.8, 0, hat2
+  end
+  h 2, 0.1, rrand(-0.25, 0.25), hat1
+  set :r, rrand_i(0, 2)
+end
+
+sleep 10
+live_loop :melo do
+  tick(:i)
+  with_fx :echo, phase: 0.75, decay: 6, mix: 0.9 do
+    8.times do
+      tick(:ii)
+      synth :dtri, note: ring(61,63,56,58,51,52,58,59).look(:ii)+24, amp: 0.2
+      sleep ring(0.25,0.5).look(:ii)
+    end
+  end
+end
+
