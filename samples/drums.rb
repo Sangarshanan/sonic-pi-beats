@@ -183,6 +183,8 @@ end
 
 # Trap beat
 
+use_bpm 95
+
 kick1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks02.wav"
 kick2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks05.wav"
 snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Clap05.wav"
@@ -195,18 +197,15 @@ k = [
   [1, 1, 0, 1, 2, 1, 0, 0, 1, 1, 0, 0, 2, 0, 0, 2]
 ]
 
-sleep 25
 live_loop :kick do
   r = get[:r]
   16.times do |i|
-    use_random_seed 132
     sample kick2, amp: 1 if k[r][i] == 1
     sample snare, amp: 1.5 if k[r][i] == 2
     sleep 0.25
   end
 end
 
-sleep 10
 define :h do |x, a, p, h|
   density x do
     sample h, amp: a, pan: p
@@ -224,19 +223,38 @@ live_loop :hat, sync: :kick do
   in_thread do
     h [4, 4, 4, 6, 6, 8, 12, 3].choose, 0.8, 0, hat2
   end
-  h 2, 0.1, rrand(-0.25, 0.25), hat1
+  h 2, 0.2, rrand(-0.25, 0.25), hat1
   set :r, rrand_i(0, 2)
 end
 
-sleep 10
-live_loop :melo do
-  tick(:i)
-  with_fx :echo, phase: 0.75, decay: 6, mix: 0.9 do
-    8.times do
-      tick(:ii)
-      synth :dtri, note: ring(61,63,56,58,51,52,58,59).look(:ii)+24, amp: 0.2
-      sleep ring(0.25,0.5).look(:ii)
-    end
+
+# 4 On the floor (disco)
+
+use_bpm 120
+
+kick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks05.wav"
+snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare10.wav"
+hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats09.wav"
+hat2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-OpenHiHats18.wav"
+water = "/Users/sangarshanan/Downloads/samples/water_drop.wav"
+rave = "/Users/sangarshanan/Downloads/samples/the-canyon-rave.wav"
+
+grid1= [
+  1,0,3,0, 2,0,3,0,
+  1,0,3,0, 2,0,3,0,
+  1,0,3,0, 2,0,3,0,
+  1,0,3,0, 2,0,4,0,
+]
+
+
+live_loop :drum do
+  32.times do |index|
+    puts index, grid1[index]
+    sample kick, amp: 1.5 if grid1[index] == 1
+    sample snare if grid1[index] == 2
+    sample hat1 if grid1[index] == 3
+    sample hat2 if grid1[index] == 4
+    sleep 0.25
   end
 end
 
