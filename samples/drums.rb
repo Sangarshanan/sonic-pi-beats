@@ -6,9 +6,7 @@ use_bpm 98
 # Closed hat - :drum_cymbal_closed
 # Open Hat - :drum_cymbal_open, sustain: 0.3
 
-# Chill beats
-
-# Sample 1 
+# Chill beats Sample 1 
 
 grid1 = [1,0,0,0,   2,0,0,1,   0,0,1,0,   2,0,0,1]
 
@@ -35,7 +33,7 @@ live_loop :drum2 do
   end
 end
 
-# Sample 2
+# Chill beats Sample 2
 
 grid1 = [1,1,0,0,   2,0,1,0,   1,1,0,1,   2,0,0,0]
 
@@ -63,9 +61,7 @@ live_loop :drum2 do
 end
 
 
-# Insk Insk No
-
-# 1
+# Insk Insk No 1
 
 live_loop :bass_drum do
   sample :bd_haus, cutoff: 70, amp: 1.5
@@ -227,6 +223,41 @@ live_loop :hat, sync: :kick do
   set :r, rrand_i(0, 2)
 end
 
+# yet another trap beat
+
+use_bpm 140
+
+kick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks08.wav"
+snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare10.wav"
+hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats09.wav"
+
+kick_snare= [
+  1,0,0,0, 0,0,0,0,
+  0,1,0,0, 2,0,0,0,
+  0,0,1,0, 0,0,0,0,
+  0,0,0,0, 0,0,1,0,
+  0,0,0,0, 2,0,0,0,
+  0,0,1,0, 0,0,0,0,
+]
+
+hihat= [
+  3,0,0,3, 0,0,3,0,
+  0,3,0,0, 3,3,3,0,
+  0,0,3,0, 0,3,0,0,
+  3,0,0,3, 0,0,3,0,
+  0,3,0,0, 3,0,0,3,
+  0,0,3,0, 0,3,0,0,
+]
+
+live_loop :drum do
+  48.times do |index|
+    puts index, kick_snare[index], hihat[index]
+    sample :bd_haus, cutoff: 70, amp: 1.5 if kick_snare[index] == 1
+    sample snare if kick_snare[index] == 2
+    sample hat1 if hihat[index] == 3
+    sleep 0.2
+  end
+end
 
 # 4 On the floor (disco)
 
@@ -257,4 +288,60 @@ live_loop :drum do
     sleep 0.25
   end
 end
+
+
+# Bo didley Beat
+
+kick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks03.wav"
+snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare02.wav"
+hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats01.wav"
+
+kick_snare= [
+  1,0,2,1, 0,1,2,0,
+  0,1,2,0, 1,0,2,0,
+]
+
+
+live_loop :drum do
+  16.times do |index|
+    puts index, kick_snare[index]
+    sample kick, amp: 1.5 if kick_snare[index] == 1
+    sample snare if kick_snare[index] == 2
+    sleep 0.25
+  end
+end
+
+live_loop :hi_hat do
+  sample hat1, amp: 0.5
+  sleep 0.5
+end
+
+# Shuffle feel
+
+use_bpm 100
+
+conga = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Conga1.wav"
+stick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Stick1.wav"
+mar = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Maracas1.wav"
+
+grid1= [
+  1,0,1,0, 2,0,2,0,
+  1,0,1,0, 2,0,1,0,
+]
+
+live_loop :drum do
+  16.times do |index|
+    puts index, grid1[index]
+    sample conga, cutoff: 80, amp: 2 if grid1[index] == 1
+    sample stick if grid1[index] == 2
+    sleep 0.25
+  end
+end
+
+live_loop :mar do
+  sleep 1
+  sample mar
+  sleep 1
+end
+
 
