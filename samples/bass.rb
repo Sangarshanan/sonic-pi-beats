@@ -46,3 +46,22 @@ live_loop :arp do
   play (scale :g2, :major_pentatonic).tick(:foo), release: 0.1, amp: 0.5
   sleep (ring 0.125, 0.25, 0.4).tick(:bar)
 end
+
+# papa roach
+live_loop :bass do
+  with_fx :slicer, phase: 0.25, wave: 0, mix: 0 do
+    with_fx :distortion, distort: 0.999, mix: 0.6, amp: 0.7 do
+      tick(:iii)
+      ##| synth :dsaw, note: ring(64,67,62,62,62).look(:iii)-24, sustain: knit(2,3,1,2).look(:iii), release: 0, amp: 0.01
+      2.times do
+        tick(:i)
+        gg = ring(0.25,0.5)
+        synth :fm, amp: 0.1, note: knit(64,2,62,2,60,2,59,2,62,2).look(:i)-24, release: gg.look(:i)
+        sleep 0.25
+      end
+      tick(:ii)
+      sleep knit(1.5,3,0.5,2).look(:ii)
+    end
+  end
+end
+
