@@ -345,3 +345,18 @@ live_loop :mar do
 end
 
 
+# Feel good Gorillaz Drums
+
+live_loop :kick do
+  sample :bd_fat, amp: 2
+  sleep 2.5
+  sample :bd_fat, amp: 2
+  sleep 1.5
+end
+
+live_loop :snare, delay: 1 do
+  ##| stop
+  sample :sn_dolf, amp: 2
+  sleep 2
+end
+
