@@ -65,3 +65,26 @@ live_loop :bass do
   end
 end
 
+
+# Feel good Inc
+melb = ring(
+  :ds3, :ds3, :f3, :fs3, :b3, :as3,
+  :gs3, :gs3, :b3, :as3, :fs3, :ds3,
+)
+
+tb = ring(
+  1.5, 0.5, 0.5, 1, 1, 3.5,
+  1.5, 0.5, 0.5, 1, 1, 3.5
+)
+
+
+live_loop :bassline, sync: :kick do
+  ##| stop
+  tick(:i)
+  with_synth :fm do
+    play melb.look(:i), amp: 0.8, sustain: tb.look(:i) - 0.4
+    sleep tb.look(:i)
+  end
+end
+
+

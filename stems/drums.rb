@@ -1,5 +1,13 @@
 use_bpm 98
 
+"""
+  0,0,0,0, 0,0,0,0,
+  0,0,0,0, 0,0,0,0,
+  0,0,0,0, 0,0,0,0,
+  0,0,0,0, 0,0,0,0,
+"""
+
+
 # https://learningmusic.ableton.com/make-beats/make-beats.html
 # Kick - :bd_haus
 # Clap - :sn_generic, rate: 2
@@ -359,4 +367,26 @@ live_loop :snare, delay: 1 do
   sample :sn_dolf, amp: 2
   sleep 2
 end
+
+
+# Welcome to Los Santos
+
+ohat= "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-OpenHiHats05.wav"
+
+grid1= [
+  1,0,0,0, 2,0,0,1,
+  1,0,3,0, 2,0,0,0
+]
+
+
+live_loop :drum do
+  16.times do |index|
+    puts index, grid1[index]
+    sample :bd_haus if grid1[index] == 1
+    sample :sn_dolf if grid1[index] == 2
+    sample ohat if grid1[index] == 3
+    sleep 0.25
+  end
+end
+
 
