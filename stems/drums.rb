@@ -69,6 +69,34 @@ live_loop :drum2 do
 end
 
 
+# Chill Bop (Low BPM) Dance Music (High BPM)
+
+kick =  [1,1,0,0,1,0,1,0,1,0,0,0,1,1,1,1]
+snare = [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0]
+hat =   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+
+live_loop :kick do
+  16.times do |hit|
+    sample :bd_klub, hpf:30 if kick[hit] == 1
+    sleep 0.25
+  end
+end
+
+live_loop :Snare do
+  16.times do |hit|
+    sample :drum_snare_hard, amp:rrand(0.6,0.9) if snare[hit] == 1
+    sleep 0.25
+  end
+end
+
+live_loop :hat do
+  16.times do |hit|
+    sample :drum_cymbal_closed,  release:0.3, amp: rrand(0.05, 0.3), pan: rrand(-1,1) if spread(13,16).tick
+    sleep 0.25
+  end
+end
+
 # Insk Insk No 1
 
 live_loop :bass_drum do
