@@ -304,7 +304,6 @@ snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare10.w
 hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats09.wav"
 hat2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-OpenHiHats18.wav"
 water = "/Users/sangarshanan/Downloads/samples/water_drop.wav"
-rave = "/Users/sangarshanan/Downloads/samples/the-canyon-rave.wav"
 
 grid1= [
   1,0,3,0, 2,0,3,0,
