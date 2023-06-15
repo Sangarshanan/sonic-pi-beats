@@ -370,3 +370,16 @@ live_loop :drum do
 end
 
 
+# Random Percussion
+
+live_loop :perc do
+  sample "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Clave3.wav", amp: rrand(1, 1.5), release: rrand(0.6, 0.9)
+  sleep [0.5, 1, 0.75, 0.25].choose
+end
+
+mar = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Maracas3.wav"
+
+live_loop :mar do
+  sample mar
+  sleep 1
+end
