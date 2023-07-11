@@ -5,7 +5,7 @@ snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Clap05.wa
 hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats07.wav"
 hat2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats10.wav"
 
-k = [ 
+k = [
   [1, 0, 1, 1, 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 1, 0],
   [1, 0, 0, 1, 2, 0, 0, 1, 1, 0, 0, 0, 2, 0, 1, 1],
   [1, 1, 0, 1, 2, 1, 0, 0, 1, 1, 0, 0, 2, 0, 0, 2]
@@ -14,11 +14,10 @@ k = [
 bass = ring(57,57,59,60,55,53,52,52,55)
 tb = ring(2,1,1,3,1,3,2,1,2)
 
-##| with_fx :wobble, phase: 1, cutoff_max: 90, mix: 1 do
-##|   sample "/Users/sangarshanan/Downloads/samples/jazzy_1.wav"
-##| end
+with_fx :wobble, phase: 1, cutoff_max: 90, mix: 1 do
+  sample "/Users/sangarshanan/Downloads/samples/ya_like_jazzz.wav"
+end
 
-##| ,sync: :kick
 live_loop :bass, sync: :kick do
   stop
   tick
@@ -28,12 +27,12 @@ live_loop :bass, sync: :kick do
   end
 end
 
-live_loop :kick, sync: :bass do
+live_loop :kick do
   ##| stop
   r = rrand_i(0, 2)
   16.times do |i|
     use_random_seed 132
-    ##| sample kick1, amp: 5 if k[r][i] == 1
+    sample kick1, amp: 5 if k[r][i] == 1
     sample snare, amp: 3 if k[r][i] == 2
     sleep 0.25
   end
@@ -43,7 +42,7 @@ define :h do |x, a, p, h|
   stop
   density x do
     sample h, amp: a, pan: p
-    sleep 1.5
+    sleep 1
   end
 end
 
@@ -84,4 +83,3 @@ live_loop :melo, sync: :synths do
     end
   end
 end
-

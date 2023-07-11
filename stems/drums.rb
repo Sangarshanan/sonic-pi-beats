@@ -97,6 +97,54 @@ live_loop :hat do
   end
 end
 
+
+# Another chill Breakbeat
+
+use_bpm 120
+
+live_loop :rummut do
+  ##| stop
+  sample :bd_klub, amp: 2
+  sleep 0.5
+  sample :bd_klub, amp: 2, rate: 1.25
+  sleep 0.25
+  sample :bd_ada, amp: 1.5
+  sleep 0.25
+  with_fx :reverb, mix: 0.2, decay: 1 do
+    sample :sn_dolf, amp: 1.75
+  end
+  sleep 0.25
+  sample :bd_pure, amp: 1.5
+  sleep 0.75
+  sample :bd_ada, amp: 2
+  sleep 1
+  with_fx :reverb, mix: 0.2, decay: 1 do
+    sample :drum_snare_soft, amp: 2
+  end
+  sleep 1
+end
+
+live_loop :hihat, sync: :rummut do
+  ##| stop
+  with_fx :flanger, mix: 0 do
+    sample :perc_snap, amp: rrand(0.9, 1.4), rate: rrand(1.9, 2.1), cutoff: rrand(80, 120), pan: rrand(-0.25, 0.25)
+  end
+  sleep 0.25
+end
+
+live_loop :amen_break, sync: :rummut do
+  ##| stop
+  2.times do
+    3.times do
+      sample :loop_amen, beat_stretch: 4
+      sleep 4
+    end
+    sample :loop_amen_full, beat_stretch: 16, start: 0.75
+    sleep 4
+  end
+end
+
+
 # Insk Insk No 1
 
 live_loop :bass_drum do
@@ -383,3 +431,4 @@ live_loop :mar do
   sample mar
   sleep 1
 end
+
