@@ -72,3 +72,56 @@ live_loop :melo do
     end
   end
 end
+
+
+# chill lofi
+live_loop :synth1, sync: :met do
+  use_synth :saw
+  use_synth_defaults release: 5, cutoff: 60
+  
+  key = :f3
+  chords = [
+    chord(key, :M7),
+    chord(key-5, :M7),
+    chord(key-3, :M7),
+  ]
+  with_fx :reverb, mix: 0.5, room: 0.7 do
+    with_fx :compressor do
+      for chord in chords do
+        play_times chord
+        sleep 4
+      end
+    end
+  end
+end
+
+
+# Piano classic melody
+use_bpm 120 
+
+p_ns1 = [59, 58, 47, 54, 61]
+p_ns2 = [59, 58, 54, 47, 59, 58, 54, 61].ring
+
+live_loop :melody do
+  if synth2_play < 1 then stop end
+  use_synth :piano
+  
+  use_random_seed 80
+  
+  with_fx :reverb, room: 0.5 do
+    with_fx :reverb, room: 1 do
+      
+      ns = (scale :D5, :marva, num_octaves: 1)
+      2.times do
+        play p_ns1.tick
+        sleep [0.5, 1].choose
+      end
+      4.times do
+        play p_ns2.tick + 24
+        sleep [0.5, 1].choose
+      end
+    end
+  end
+end
+
+

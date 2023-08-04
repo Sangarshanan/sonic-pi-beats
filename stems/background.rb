@@ -42,3 +42,10 @@ end
 with_fx :wobble, phase: 2, cutoff_max: 80, cutoff_min: 20, mix: 0 do
   synth :dsaw, note: 20, release: 10, amp: 0.2
 end
+
+# Hollow
+live_loop :hollow do
+  invert=  [0, 1, 2].choose
+  synth :hollow, note: chord_invert(chord(:b2, :M7), invert), sustain: 3, release: 3, amp: 4
+  sleep 3
+end

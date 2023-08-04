@@ -88,3 +88,58 @@ live_loop :bassline, sync: :kick do
 end
 
 
+# Wobbly bassline
+
+live_loop :wobbly_bass do
+  
+  key = :f2
+  a = 0.5
+  
+  keys = [
+    key,
+    key-5,
+  ]
+  
+  with_fx :reverb do
+    use_synth :beep
+    for k in keys do
+      play k, sustain: 8, amp: a
+      sleep 8
+    end
+  end
+end
+
+
+# Seriously cool bass
+live_loop :base do
+  sy1 = :fm
+  use_random_seed 100
+  
+  16.size.times do
+    c = chord(:b1, :M7).shuffle.choose
+    synth sy1, note: c, sustain: 0.25, release: 0.1, amp: 2
+    sleep 0.25
+  end
+end
+
+# Slow Bass
+use_bpm 80
+base_note = (scale :c1, :minor_pentatonic, num_octaves: 1).shuffle
+base_sleep = [0.25, 0.125]
+base_amp = 1.2
+
+live_loop :base do
+  ##| stop
+  use_random_seed 400000 # 400000 3200 3400
+  8.times do
+    sl = base_sleep.choose
+    n = base_note.tick
+    
+    synth :fm, note: n, amp: base_amp, release: 0, sustain: 0.125
+    synth :fm, note: n+12, amp: base_amp-0.3, release: 0, sustain: 0.125
+    synth :dsaw, note: n+12, amp: base_amp, release: 0, sustain: 0.125 # :dsaw :subpulse :sine
+    sleep sl
+  end
+end
+
+
