@@ -12,7 +12,7 @@ live_loop :chords_with_fx do
       play (ring, chord(:c3, :M7), chord(:a3, :m7), chord(:d3, :m7), chord(:g3, :major7)).tick, sustain: 1.25
       
       ##| play (ring, chord(:d4, :major7), chord(:b4, :major7), chord(:g4, :major7), chord(:a4, :maj)).tick, sustain: 1.25
-      
+
       sleep 2
     end
   end

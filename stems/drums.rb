@@ -296,7 +296,7 @@ live_loop :drum do
   end
 end
 
-# 4 On the floor (disco)
+# 4 On the floor (disco) house beat
 
 use_bpm 120
 
@@ -322,6 +322,57 @@ live_loop :drum do
     sample hat1 if grid1[index] == 3
     sample hat2 if grid1[index] == 4
     sleep 0.25
+  end
+end
+
+
+# A Different House Beat
+
+kick_flag = 1
+clap_flag = 1
+hat_flag = 0
+cymbal_open_flag = 0
+
+live_loop :met do
+  sleep 1
+end
+
+with_fx :reverb, room: 0.4 do
+  with_fx :lpf, cutoff: 100 do
+    live_loop :kick, sync: :met do
+      if kick_flag < 1 then stop end
+      sample :bd_zum, amp: 1, cutoff: 100
+      sleep 0.5
+    end
+    
+    live_loop :hhc3, sync: :met do
+      if hat_flag < 1 then stop end
+      
+      sleep 0.25
+      sample :drum_cymbal_closed, amp: 2, lpf: 100
+      sleep 0.25
+    end
+    
+    live_loop :cymbal_open, sync: :met do
+      if cymbal_open_flag < 1 then stop end
+      sleep 0.25
+      sample :drum_cymbal_open, amp: 0.5, finish: 0.25, lpf: 120, rate: 1.1
+      sleep 0.25
+    end
+    
+    live_loop :snare, sync: :met do
+      if clap_flag < 1 then stop end
+      
+      ##| stop
+      a = 0.75
+      co = 110
+      at = 0.00
+      r = 3
+      sleep 0.5
+      sample :sn_generic, rate: r+1, cutoff: co, amp: a, attack: at
+      sample :sn_generic, rate: r, start: 0.02, cutoff: co, pan: 0.2, amp: a, attack: at
+      sleep 0.5
+    end
   end
 end
 
