@@ -75,6 +75,12 @@ end
 
 
 # chill lofi
+define :play_times do |chord|
+  in_thread do
+    play_pattern_timed chord, 0.125, amp: 0.5
+  end
+end
+
 live_loop :synth1, sync: :met do
   use_synth :saw
   use_synth_defaults release: 5, cutoff: 60
@@ -123,5 +129,51 @@ live_loop :melody do
     end
   end
 end
+
+# Lofi Pianovy
+
+rhy = (ring 2.5, 1, 0.5)
+chrd = (ring :e, :g, :a, :c)
+modd = (ring :minor7, :major7, :major, :maj9)
+
+with_fx :ping_pong do
+  live_loop :pyanno do
+    use_synth :piano
+    use_synth_defaults amp: 0.7, release: 2.2
+    c = chrd.tick
+    m = modd.look
+    
+    in_thread do
+      15.times do
+        sleep 0.25
+        play (chord c+12, m, num_octaves: 2).tick(:b, step: 2), on: (one_in 3), amp: rand(0.15), release: rand(3)
+      end
+    end
+    play c-24, amp: 0.3
+    2.times do
+      play_chord (chord c-12, m)
+      sleep 1.5
+    end
+    in_thread do
+      4.times do
+        play (chord c-24, m).tick(:c), on: (one_in 2), amp: rand(0.4), release: rand(3)
+        sleep 0.25
+      end
+    end
+    sleep 0.5
+    
+    play_chord (chord c-12, m), release: 0.4
+    sleep 0.5
+  end
+end
+
+# Chords with pitch shift
+
+with_fx :pitch_shift, pitch: -3.9, reps: 2 do
+  play chord(:a3, "m11"), decay: 4, sustain_level: 0, sustain: 0, release: 0.01
+  play chord(:a3, "m11"), decay: 4, sustain_level: 0, sustain: 0, release: 0.01
+  sleep 3
+end
+
 
 

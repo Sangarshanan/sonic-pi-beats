@@ -214,8 +214,55 @@ live_loop :sliced_tabla do
   sleep 2.0  / n
 end
 
+# Tabla fast beat
+
+live_loop :tabla do
+  sample :tabla_na if spread(5,7).tick
+  sleep 0.25
+end
+
+live_loop :tabla2 do
+  sample :tabla_na_s if spread(3,5).tick
+  sleep 0.25
+end
+
+live_loop :noisehat do
+  use_synth :noise
+  play :g4, release: 0.025, cutoff: 110, amp: 2 if spread(5,16).tick
+  sleep 0.25
+end
+
+
+# Chill cymbals
+
+use_bpm 60
+
+live_loop :drums do
+  sample :bd_808, amp: 3
+  sleep 1
+  sample :sn_dub, amp: 1.5
+  sleep 1
+  sample :bd_808, amp: 2
+  sleep 1
+  sample :sn_dub, amp: 1.5
+  sleep 1
+end
+
+live_loop :hats do
+  8.times do
+    sample :drum_cymbal_closed, amp: rand(0.5..0.8), pan: rrand(-0.2, 0.2)
+    sleep 0.25
+  end
+end
 
 # LOFI beats
+
+
+drum_loop = "/Users/sangarshanan/Downloads/samples/Lofi/Loops/lofi drum loop (3).wav"
+live_loop :lofi_drum_loop, sync: :met do    
+  sample drum_loop, finish: 0.5, amp: 2
+  sleep (sample_duration drum_loop)/2
+end
 
 # Soul beat
 
