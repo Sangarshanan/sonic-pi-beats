@@ -47,6 +47,17 @@ live_loop :jazz do
   end
 end
 
+kat = "/Users/sangarshanan/Downloads/samples/crate1/Sample 06.wav"
+live_loop :jazz2 do
+  ##| stop
+  with_fx :slicer do
+    with_fx :pan do
+      sample kat, beat_stretch: 8, start: 0.3
+      sleep 4
+    end
+  end
+end
+
 live_loop :bass, sync: :chill do
   ##| stop
   sy1 = :fm

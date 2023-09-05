@@ -52,12 +52,24 @@ live_loop :drumloop1 do
 end
 
 # Jazzy
+use_bpm 50
+
 jazz = "/Users/sangarshanan/Downloads/samples/Hiphop-Samples/Jazzy.wav"
 live_loop :jazz do
   ##| stop
   with_fx :ixi_techno do
     sample jazz, finish: 0.5, cutoff: 80
     sleep 5.7
+  end
+end
+
+kat = "/Users/sangarshanan/Downloads/samples/crate1/Sample 14.wav"
+live_loop :jazz do
+  with_fx :flanger do
+    with_fx :pan do
+      sample kat, beat_stretch: 6, start: 0.15, finish: 0.89, amp: 2
+      sleep 4.2
+    end
   end
 end
 
@@ -86,3 +98,31 @@ live_loop :sample   do
   end
   sleep 20
 end
+
+# Im high
+imhigh = "/Users/sangarshanan/Downloads/samples/Hiphop-Samples/ImHigh.wav"
+live_loop :imhigh do
+  ##| stop
+  with_fx :reverb do
+    sample imhigh, start: 0.5, finish: 0.75
+    sleep 3.4
+  end
+end
+
+# Drum loop
+drum_loop = "/Users/sangarshanan/Downloads/samples/Lofi/Loops/lofi drum loop (14).wav"
+live_loop :lofi_drum_loop do
+  sample drum_loop, finish: 0.5, amp: 0.5
+  sleep (sample_duration drum_loop)/2
+end
+
+
+# kat
+kat = "/Users/sangarshanan/Downloads/samples/Kaytranada/Samples/Scared To Death.wav"
+live_loop :kat do
+  with_fx :reverb do
+    sample kat, beat_stretch: 8, amp: 3
+    sleep 8
+  end
+end
+
