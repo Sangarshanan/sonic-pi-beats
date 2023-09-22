@@ -1,3 +1,5 @@
+### NO VERSES ###
+
 use_bpm 50
 
 kick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks05.wav"
@@ -5,7 +7,7 @@ snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare02.w
 hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats16.wav"
 
 live_loop :lofi_beat, sync: :jazz do
-  ##| stop
+  stop
   sample :loop_amen, beat_stretch: 2, amp: 2, cutoff: 90
   sleep 2
 end
@@ -16,7 +18,7 @@ kick_snare= [
 ]
 
 live_loop :drum, sync: :jazz do
-  ##| stop
+  stop
   16.times do |index|
     puts index, kick_snare[index]
     sample kick, amp: 1.5 if kick_snare[index] == 1
@@ -26,13 +28,13 @@ live_loop :drum, sync: :jazz do
 end
 
 live_loop :hi_hat, sync: :chill do
-  ##| stop
+  stop
   sample hat1
   sleep 0.25
 end
 
 live_loop :chill, sync: :jazz do
-  ##| stop
+  stop
   sample :ambi_lunar_land, rate: 0.5, amp: 0.5, beat_stretch: 2
   sample :vinyl_hiss, rate: 0.8, amp: 0.5
   sleep 4
@@ -47,19 +49,19 @@ live_loop :jazz do
   end
 end
 
-kat = "/Users/sangarshanan/Downloads/samples/crate1/Sample 06.wav"
-live_loop :jazz2 do
-  ##| stop
-  with_fx :slicer do
+kat = "/Users/sangarshanan/Downloads/samples/Lofi/LofiJuice/kendrickFmin.wav"
+live_loop :jazz2, sync: :jazz do
+  stop
+  with_fx :level do
     with_fx :pan do
-      sample kat, beat_stretch: 8, start: 0.3
-      sleep 4
+      sample kat, beat_stretch: 15, amp: 0.8
+      sleep 10
     end
   end
 end
 
 live_loop :bass, sync: :chill do
-  ##| stop
+  stop
   sy1 = :fm
   use_random_seed 80
   
@@ -72,6 +74,7 @@ end
 
 sample_loop = "/Users/sangarshanan/Downloads/samples/lofi/voiceover/hands behind your head.wav"
 live_loop :sample, delay: 15  do
+  ##| stop
   with_fx :ixi_techno do
     20.times do
       sample sample_loop, start: 0.5, finish: 0.6, amp: 2
