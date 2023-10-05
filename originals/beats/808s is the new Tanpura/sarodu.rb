@@ -47,6 +47,17 @@ live_loop :bass do
   end
 end
 
+sitar_acid = "/Users/sangarshanan/Downloads/samples/Indian/sitar-acid.wav"
+live_loop :sitar_acid, sync: :drum_loop   do
+  ##| stop
+  with_fx :reverb do
+    sample sitar_acid, finish: 0.5, beat_stretch: 20, amp: 0.5
+    sleep 10
+    sample sitar_acid, start: 0.5, beat_stretch: 20, amp: 0.5
+    sleep 10
+  end
+end
+
 
 drum_loop = "/Users/sangarshanan/Downloads/samples/Lofi/Loops/lofi drum loop (4).wav"
 live_loop :drum_loop, sync: :sarod do
