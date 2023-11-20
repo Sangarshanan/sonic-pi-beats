@@ -1,4 +1,4 @@
-# chill beats for scratch your balls to
+# chill beats to scratch your balls to
 
 use_bpm 60
 

@@ -143,3 +143,39 @@ live_loop :base do
 end
 
 
+# Fast Bass
+
+live_loop :bass, sync: :met do
+  use_synth_defaults release: 0.1, sustain: 0.125, amp: 1
+  n = :c2
+  n2 = n
+  s = :beep
+  s2 = :fm
+  
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.375
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.125
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.25
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.25
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.25
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.25
+  synth s, note: n
+  synth s2, note: n2
+  sleep 0.25
+  synth s, note: n if [false, true].tick
+  sleep 0.25
+end
+
+
+

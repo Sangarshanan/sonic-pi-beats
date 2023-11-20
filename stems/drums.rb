@@ -78,7 +78,7 @@ hat =   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 live_loop :kick do
   16.times do |hit|
-    sample :bd_klub, hpf:30 if kick[hit] == 1
+    sample :bd_klub, hp4:30 if kick[hit] == 1
     sleep 0.25
   end
 end
@@ -351,7 +351,6 @@ kick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks05.wav
 snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare10.wav"
 hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats09.wav"
 hat2 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-OpenHiHats18.wav"
-water = "/Users/sangarshanan/Downloads/samples/water_drop.wav"
 
 grid1= [
   1,0,3,0, 2,0,3,0,
@@ -529,5 +528,28 @@ live_loop :mar do
   sample mar
   sleep 1
 end
+
+# TABLA
+
+live_loop :tabla_loop1, sync: :kick  do
+  ##| stop
+  with_fx :level, amp: 2 do
+    sample :tabla_ghe1
+    sleep 0.75
+    sample :tabla_re
+    sleep 0.25
+    sample :tabla_na
+    sleep 0.5
+    sample :tabla_ghe1
+    sleep 0.5
+    sample :tabla_ghe1
+    sleep 0.75
+    sample :tabla_re
+    sleep 0.25
+    sample :tabla_na_o
+    sleep 1
+  end
+end
+
 
 

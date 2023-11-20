@@ -71,3 +71,14 @@ live_loop :hats do
     end
   end
 end
+
+#### Melodies ####
+
+loop2 = "/Users/sangarshanan/Downloads/samples/Hiphop-Samples/loop2.wav"
+live_loop :loop2 do
+  with_fx :slicer, mix: 0.5 do
+    sample loop2, amp: 0.8, beat_stretch: 40
+    sleep 40
+  end
+end
+

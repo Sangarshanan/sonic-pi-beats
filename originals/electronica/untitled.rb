@@ -1,3 +1,4 @@
+
 use_bpm 160
 
 live_loop :starter do
@@ -54,7 +55,7 @@ end
 live_loop :carnatic_violin, sync: :bass do
   ##| stop
   with_fx :reverb do
-    sample "/Users/sangarshanan/Downloads/samples/violin-carnatic.wav", amp: 2
+    sample "/Users/sangarshanan/Downloads/samples/Indian/violin-carnatic.wav", amp: 2
     sleep 12
   end
 end
