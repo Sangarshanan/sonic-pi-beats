@@ -5,20 +5,20 @@ use_bpm 100
 ## CONTROLS ##
 
 # Drum
-drum = 0
+drum = 1
 hats = 0
 
 # effect
 guit = 0
 
 # melody
+synth1 = 1
 bassline = 0
-synth1 = 0
 synth2 = 0
 
 
 live_loop :tabla_loop  do
-  stop
+  ##| stop
   with_fx :level, amp: 2 do
     sample :tabla_ghe1
     sleep 0.75
