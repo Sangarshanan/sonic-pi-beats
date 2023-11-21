@@ -126,3 +126,14 @@ live_loop :kat do
   end
 end
 
+# Mayilirage chop
+
+live_loop :chop1, sync: :drum_loop do
+  ##| stop
+  with_fx [:slicer,  :tremolo].choose, sync: :drum_loop, mix: 0.8 do
+    sample mayil1, beat_stretch: 20, start: 0.45, finish: 0.8, rate: -1
+    sleep 7
+  end
+end
+
+
