@@ -178,4 +178,35 @@ live_loop :bass, sync: :met do
 end
 
 
+# Techno bass
+live_loop :bass do
+  with_fx :reverb do
+    with_fx :ixi_techno, mix: 0.3 do
+      64.times do
+        i = tick
+        synth :subpulse, amp: 2, release: 0.8, note: get[:chord][0] - 36 if i % 4 == 2
+        synth :tb303, amp: 2, release: rand(0.04), note: get[:chord][0] - 36 if i % 4 == 2 or (i % 16 > 12)
+        sleep 0.125
+      end
+    end
+  end
+end
+
+# arpegio
+live_loop :arpegio do
+  stop
+  depth = [1, 2, 3, 4].ring.mirror.tick(:d)
+  with_fx :slicer, phase: 8, wave: 0, pulse_width: 0.75 do
+    with_fx :echo, phase: 0.5 + 0.125 / 2, decay: 4 do
+      with_fx :echo, phase: 0.125 * 3, decay: 4 do
+        32.times do
+          synth :fm, note: get[:chord].choose + 12, divisor: 2, depth: depth, release: 0.1 + rand(0.3), amp: 0.5 + rand(0.1)
+          sleep 0.125
+        end
+      end
+    end
+  end
+end
+
+
 
