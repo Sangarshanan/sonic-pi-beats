@@ -175,5 +175,3 @@ with_fx :pitch_shift, pitch: -3.9, reps: 2 do
   sleep 3
 end
 
-
-

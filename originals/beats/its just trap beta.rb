@@ -12,44 +12,26 @@ bass = 0
 glitch1 = 0
 glitch2 = 0
 
-keys = 1
-loop1 = 0
+drone = 0
+jazzy_loop1 = 0
+rand_mel = 0
 
-
-live_loop :keys do
-  if keys < 1 then stop end
-  i = tick
-  if i % 32 > 23
-    release = line(0.2, 0.7, steps: 23).mirror.tick(:l)
-    cutoff = line(90, 120, steps: 19).mirror.tick(:c)
-    res = line(0.01, 0.95, steps: 17).mirror.tick(:r)
-    with_fx :slicer do
-      with_fx :rhpf, res: res, cutoff: 70 + rand_i(10) do
-        synth :beep, note: get[:chord], amp: 10, cutoff: cutoff, release: release, decay: 0.1, sustain_level: 0.1 if i % 4 == 0
-        synth :tech_saws, note: get[:chord], amp: 10, cutoff: cutoff, release: release, decay: 0.1, sustain_level: 0.1  if i % 4 == 0
-        
-        synth :beep, note: get[:chord], amp: 2, cutoff: cutoff +3, release: release + 0.05, decay: 0.1, sustain_level: 0.1 if i % 4 == 3
-        synth :tech_saws, note: get[:chord], amp: 2, cutoff: cutoff +3, release: release + 0.05, decay: 0.1, sustain_level: 0.1 if i % 4 == 3
-      end
-    end
-  end
-  sleep 0.125
+live_loop :mel, sync: :kick1 do
+  if rand_mel < 1 then stop end
+  # 6 to 20 to 25 to 29
+  # 40 to 50
+  use_random_seed 40
+  use_synth :pluck
+  my_mel = ((scale :e, :minor) + (knit :e, 8) + (knit :r, 8)).shuffle.take(8)
+  play my_mel.tick
+  sleep 0.25
 end
 
-live_loop :drone do
-  if keys < 1 then stop end
+live_loop :ambi_drone, sync: :kick1 do
+  if drone < 1 then stop end
   with_fx :ring_mod, mix: rand(0.6) do
     sample :ambi_drone, rate: 1.34 + rand(0.01), finish: 0.1, pan: 1 - rand(2)
     sleep 2
-  end
-end
-
-hiphop = "/Users/sangarshanan/Downloads/samples/Hiphop-Samples/loop2.wav"
-live_loop :loop1, sync: :kick1 do
-  if loop1 < 1 then stop end
-  with_fx :slicer, mix: 0.5 do
-    sample hiphop, amp: 0.8, beat_stretch: 40
-    sleep 40
   end
 end
 
@@ -65,7 +47,7 @@ live_loop :glitch2, sync: :kick1 do
   if glitch2 < 1 then stop end
   with_fx :echo, decay: 6, phase: 0.125 do
     sleep  0.125
-    sample :bass_drop_c, rpitch: 9, finish: 0.15, start: 0.1, rate: [-1, 1].choose
+    sample :bass_drop_c, rpitch: 9, finish: 0.15, start: 0.1, rate: [-1, 1].choose, amp: 0.7
     sleep 7.75 + 0.125
   end
 end
@@ -156,3 +138,13 @@ live_loop :hats, sync: :kick1 do
     end
   end
 end
+
+hiphop = "/Users/sangarshanan/Downloads/samples/Hiphop-Samples/loop2.wav"
+live_loop :loop1, sync: :kick1 do
+  if jazzy_loop1 < 1 then stop end
+  with_fx :slicer, mix: 0.5 do
+    sample hiphop, amp: 0.8, beat_stretch: 40
+    sleep 40
+  end
+end
+

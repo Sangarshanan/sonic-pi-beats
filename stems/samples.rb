@@ -73,6 +73,20 @@ live_loop :jazz do
   end
 end
 
+# high bpm
+
+use_bpm 145
+kat = "/Users/sangarshanan/Downloads/samples/crate1/Sample 14.wav"
+live_loop :jazz do
+  with_fx :reverb do
+    with_fx :pan do
+      sample kat, beat_stretch: 20, start: 0.15, finish: 0.85, amp: 2
+      sleep 14
+    end
+  end
+end
+
+
 # Voice (Police)
 
 sample_loop = "/Users/sangarshanan/Downloads/samples/lofi/voiceover/hands behind your head.wav"
