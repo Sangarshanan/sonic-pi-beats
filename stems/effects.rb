@@ -25,3 +25,14 @@ sample :elec_filt_snare, rate: -1
 
 # random glitch bass
 sample :glitch_bass_g, rate: [0.25, 0.5, -1].choose, amp: 2
+
+
+# reverbed beep
+live_loop :beep do
+  with_fx :reverb, room: 0.8, mix: 0.6, amp: 0.1 do
+    with_fx :echo, phase: 0.5, decay: 4 do
+      play :c5, release: 0.3
+      sleep 2
+    end
+  end
+end

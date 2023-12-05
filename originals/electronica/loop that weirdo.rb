@@ -16,12 +16,20 @@ live_loop :bass, sync: :starter do
   end
 end
 
-live_loop :luuppibiitti, sync: :bass do
+synth2 = "/Users/sangarshanan/Downloads/samples/apple/Chill/Kyoto Night Synth.wav"
+live_loop :synth2, sync: :starter do
   stop
+  with_fx :reverb, mix: 0.5 do
+    sample synth2, beat_stretch: 16, amp: 0.5
+    sleep 16
+  end
+end
+
+live_loop :luuppibiitti, sync: :bass do
+  ##| stop
   sample :loop_compus, beat_stretch: 8, amp: 2
   sleep 8
 end
-
 
 live_loop :beats, sync: :bass do
   ##| stop
@@ -55,7 +63,7 @@ live_loop :carnatic_violin, sync: :bass do
   ##| stop
   with_fx :reverb do
     sample "/Users/sangarshanan/Downloads/samples/Indian/violin-carnatic.wav", amp: 2
-    sleep 12
+    sleep 0.5
   end
 end
 
@@ -65,3 +73,13 @@ live_loop :drumloop do
   end
   sleep 8
 end
+
+synth1 = "/Users/sangarshanan/Downloads/samples/apple/Chill/Prismatic Rhythm Guitar.wav"
+live_loop :synth1, sync: :starter do
+  stop
+  with_fx :panslicer, mix: 0.5 do
+    sample synth1, beat_stretch: 16
+    sleep 16
+  end
+end
+
