@@ -551,5 +551,18 @@ live_loop :tabla_loop1, sync: :kick  do
   end
 end
 
+# Echooey loop
+
+use_bpm 100
+
+with_fx :echo, room: 0.8, decay: 8, phase: 0.25, mix: 0.4 do
+  live_loop :rhythm do
+    sample :drum_heavy_kick, amp: 0.5
+    sample :elec_plip, rate: [0.5, 2, 1, 4].choose * [1, 2, 3, 10].choose, amp: 0.6
+    sleep 1
+  end
+end
+
+
 
 
