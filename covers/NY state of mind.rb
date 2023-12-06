@@ -65,33 +65,30 @@ end
 
 # DRUM BEAT #
 grid1 = [
-  1,0,0,0,
-  2,0,0,0,
-  0,2,1,0,
-  2,0,0,1,
-  1,0,1,0,
-  2,0,0,0,
-  0,2,1,0,
-  2,0,0,0
+  1,0,0,0,0,0,
+  2,0,0,0,0,0,
+  0,0,2,1,0,0,
+  2,0,0,0,0,1,
+  1,0,0,1,0,0,
+  2,0,0,0,0,0,
+  0,0,2,1,0,0,
+  2,0,0,0,0,0
 ]
 
-# , sync: :piano
+#for faint accents on the hihat
+hh = [2, 8, 14, 20, 26, 32, 38, 44]
+
 live_loop :drum1 do
-  ##| stop
-  32.times do |index|
+  48.times do |index|
     puts index, grid1[index]
     with_fx :reverb, mix: 0.3 do
       sample :drum_heavy_kick, release: 0.8 if grid1[index] == 1
       sample :drum_snare_hard, amp: 0.5, release: 0.1 if grid1[index] == 2
+      sample :drum_cymbal_closed if index % 3 == 0
+      hh.length.times do |i|
+        sample :drum_cymbal_closed, amp: 0.05 if index == hh[i]
+      end
     end
-    sleep 0.25
-  end
-end
-
-live_loop :hat, sync: :drum1 do
-  ##| stop
-  16.times do |hit|
-    sample :drum_cymbal_closed,  release: 0.3, amp: rrand(0.05, 0.4), pan: rrand(-1,1) if spread(13,16).tick
-    sleep 0.25
+    sleep 1/6.0
   end
 end
