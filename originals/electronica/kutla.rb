@@ -1,5 +1,3 @@
-# https://in-thread.sonic-pi.net/t/psytrance-loop-bass-line-kick/8399/2
-
 use_bpm 150
 
 with_fx :reverb do
@@ -39,21 +37,47 @@ with_fx :reverb do
     end
   end
   
-  snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare10.wav"
+  bass1 = "/Users/sangarshanan/Downloads/samples/apple/Chill/VHS Sunset Bass.wav"
+  live_loop :bass1, sync: :drum do
+    stop
+    sample bass1, beat_stretch: 16
+    sleep 16
+  end
+  
+  synth1 = "/Users/sangarshanan/Downloads/samples/apple/Chill/Rising Chords Guitar.wav"
+  live_loop :synth1, sync: :drum do
+    stop
+    with_fx :slicer, mix: 0.5, amp: 0.5 do
+      sample synth1, beat_stretch: 16
+      sleep 16
+    end
+  end
+  
+  snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare36.wav"
+  mar = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Maracas1.wav"
   
   grid1= [
+    1,0,0,0,
+    2,0,0,0,
+    
+    1,0,0,0,
+    2,0,0,0,
+    
+    1,0,0,0,
+    2,0,0,0,
+    
     1,0,0,0,
     2,0,0,0,
   ]
   
   
   live_loop :drum, sync: :mel1 do
-    stop
-    8.times do |index|
+    ##| stop
+    32.times do |index|
       puts index, grid1[index]
       
-      sample :bd_tek, amp: 2 if grid1[index] == 1
-      sample :bd_tek, amp: 2, pan: rdist(0.25) if grid1[index] == 1
+      sample :bd_tek, amp: 1.5 if grid1[index] == 1
+      sample :bd_tek, pan: rdist(0.25) if grid1[index] == 1
       
       ##| sample snare if grid1[index] == 2
       
@@ -63,30 +87,18 @@ with_fx :reverb do
   
   live_loop :hi_hat, sync: :drum do
     stop
-    sample :drum_cymbal_closed
+    sample mar, amp: 0.5
     sleep 0.5
   end
   
-  
-  n = :ds1
   # BASSLINE
   live_loop :bass, sync: :mel1 do
     ##| stop
-    r = 1
-    case r
-    when 1
-      rel = [0.25].choose
-    when 2
-      rel = [0.15,0.2,0.4].choose
-    when 3
-      rel = [0.15,0.25,0.25,0.25,0.5].choose
-    end
-    
     use_synth :saw
-    use_synth_defaults release: rel, cutoff: [60,80,100,120].look
-    play n
-    play n+0.25, amp: 2, pan: rdist(0.25)
-    play n+0.25+12, amp: 2, pan: rdist(0.5)
+    use_synth_defaults release: 0.25, cutoff: [60,80,100].look
+    play :e1
+    play :e1+0.25, amp: 1.5, pan: rdist(0.25)
+    play :e1+0.25+12, amp: 1.5, pan: rdist(0.5)
     sleep 0.25
   end
   
