@@ -564,5 +564,17 @@ with_fx :echo, room: 0.8, decay: 8, phase: 0.25, mix: 0.4 do
 end
 
 
+# Random Loop with Knit and Onset
+
+live_loop :tabla_loop do
+  use_random_seed 1245
+  24.times do
+    sample :loop_tabla, onset: pick, release: 0.2, amp: 2.5
+    sleep (knit, 0.125, 8, 0.25, 4, 0.25, 4, 0.25, 2, 0.125, 4, 0.25, 2).tick
+  end
+end
+
+
+
 
 

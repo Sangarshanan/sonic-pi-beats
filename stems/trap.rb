@@ -82,3 +82,20 @@ live_loop :loop2 do
   end
 end
 
+
+## Density Trap ##
+
+hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-OpenHiHats02.wav"
+
+define :hatty do |d|
+  density d do
+    sample hat1, onset: 0, amp: 2, release: 0.1, attack: 0.1
+    sleep 1
+  end
+end
+
+live_loop :hatty do
+  hatty (ring, 6,8,10,8,6).choose
+end
+
+

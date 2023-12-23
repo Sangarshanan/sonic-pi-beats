@@ -49,3 +49,56 @@ live_loop :hollow do
   synth :hollow, note: chord_invert(chord(:b2, :M7), invert), sustain: 3, release: 3, amp: 4
   sleep 3
 end
+
+
+# Haunting sine waves
+
+use_synth :sine
+use_random_seed 100
+fadeAt = 236
+
+define :liss do |p,t,b| # sets up two beating sime waves
+  n=play p,release: t,amp: 0,pan: -1
+  n2=play p+b,release: t,amp: 0,pan: 1
+  control n,amp: 1,amp_slide: t/2.0 #fade in (release fades out again)
+  control n2,amp: 1,amp_slide: t/2.0 #fade in (release fades out again)
+end
+
+with_fx :gverb, room: 20,mix: 0.7 do
+  with_fx :panslicer, phase: 2,wave: 3 do |s| #pan slice at changing rates
+    set :s,s #save pointer to panslicer
+    with_fx :level,amp: 0 do |v| #envelope to fade in at start out at end
+      at [0,fadeAt],[1,0] do |a|
+        control v,amp: a,amp_slide: 4
+        if a==0
+          sleep 4
+        end
+      end
+      
+      live_loop :haunt do
+        p=rrand_i(72,84)
+        t=rrand(4,12)
+        b=rrand(0.1,0.4)
+        liss p,t,b
+        sleep t
+        control get(:s), phase: rrand(0.20,1) #change pansliceer rate
+      end
+      
+      live_loop :haunt2,delay: 0.2 do #2nd pair of sines delayed start
+        p=rrand_i(72,84)
+        t=rrand(4,12)
+        b=rrand(0.1,0.4)
+        liss p,t,b
+        sleep t
+      end
+      
+      live_loop :haunt3,delay: 0.4 do #3rd pair of sines delayed and octave lower
+        p=rrand_i(60,72)
+        t=rrand(4,12)
+        b=rrand(0.1,0.4)
+        liss p,t,b
+        sleep t
+      end
+    end
+  end
+end

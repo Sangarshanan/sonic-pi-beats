@@ -58,17 +58,17 @@ with_fx :reverb do
   live_loop :flute1   do
     ##| stop
     
-    sample flute, start: 0.04, finish: 0.65, beat_stretch: 80, amp: 2
-    sleep 45
+    ##| sample flute, start: 0.04, finish: 0.65, beat_stretch: 80, amp: 2
+    ##| sleep 45
     
-    ##| with_fx :slicer, mix: 0.5 do
-    ##|   sample flute, start: 0.42, finish: 0.47, beat_stretch: 80, amp: 0.9
-    ##|   sleep 4
-    ##|   sample flute, start: 0.48, finish: 0.53, beat_stretch: 80, amp: 1
-    ##|   sleep 4
-    ##|   sample flute, start: 0.54, finish: 0.65, beat_stretch: 80, amp: 1
-    ##|   sleep 4
-    ##| end
+    with_fx :slicer, mix: 0.5 do
+    sample flute, start: 0.42, finish: 0.47, beat_stretch: 80, amp: 0.9
+    sleep 4
+    sample flute, start: 0.48, finish: 0.53, beat_stretch: 80, amp: 1
+    sleep 4
+    sample flute, start: 0.54, finish: 0.65, beat_stretch: 80, amp: 1
+    sleep 4
+    end
     
   end
   
@@ -105,7 +105,7 @@ with_fx :reverb do
   
   
   live_loop :drum, sync: :flute1 do
-    ##| stop
+    stop
     32.times do |index|
       puts index, grid1[index]
       
@@ -129,7 +129,7 @@ with_fx :reverb do
   
   # Hi hat
   live_loop :mar, sync: :drum do
-    ##| stop
+    stop
     32.times do |index|
       if (index-1) % 4 == 0
         puts index
@@ -145,7 +145,7 @@ with_fx :reverb do
   end
   
   live_loop :amen, sync: :drum do
-    ##| stop
+    stop
     sample :loop_amen, beat_stretch: 4
     sleep 4
   end
