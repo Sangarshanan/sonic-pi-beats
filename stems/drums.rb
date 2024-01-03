@@ -574,7 +574,31 @@ live_loop :tabla_loop do
   end
 end
 
+# Dilla beat
 
+kick = "/Users/sangarshanan/Downloads/samples/808_drum_kit/kicks/808-Kicks03.wav"
+snare = "/Users/sangarshanan/Downloads/samples/808_drum_kit/snares/808-Snare02.wav"
+hat1 = "/Users/sangarshanan/Downloads/samples/808_drum_kit/hihats/808-HiHats05.wav"
+use_bpm 120
+
+live_loop :drumloop1 do
+  at [0, 4, 4.75] do
+    sample kick, amp: 2
+  end
+  sleep 8
+end
+
+live_loop :drumloop do
+  at [2, 6] do
+    sample snare
+  end
+  sleep 8
+end
+
+live_loop :hat do
+  sample hat1
+  sleep 1.5
+end
 
 
 

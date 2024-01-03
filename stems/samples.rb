@@ -151,3 +151,15 @@ live_loop :chop1, sync: :drum_loop do
 end
 
 
+# NDTV
+use_bpm 100
+ndtv = "/Users/sangarshanan/Downloads/samples/NDTV.wav"
+
+live_loop :rhythm do
+  with_fx :reverb do
+    sample ndtv, start: 0.009, finish: 0.1, cutoff: 75
+    sleep 5.5
+  end
+end
+
+

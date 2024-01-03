@@ -1,6 +1,28 @@
-# https://in-thread.sonic-pi.net/t/melody-improvisation/988/12
-
 use_bpm 220
+
+live_loop :fromMidiDevice do
+  use_real_time
+  n, vel = sync "/midi*/note_on"
+  synth :piano, note: n, amp: 2, sustain: vel if vel > 0
+end
+
+live_loop :note, sync: :chords do
+  stop
+  use_synth :piano
+  play 72, sustain: 8, amp: 2
+  sleep 4
+end
+
+
+live_loop :chords do
+  use_synth :piano
+  with_fx :reverb, room: 0.8, mix: 0.6 do
+    play [:c3, :e3, :f3, :a3], sustain: 8, amp: 2
+    sleep 8
+    play [:ds3, :g3, :a3, :d4], sustain: 8, amp: 2
+    sleep 8
+  end
+end
 
 # FUNKY DRUMS
 ghost = -> { rrand(0.1, 0.2) }
