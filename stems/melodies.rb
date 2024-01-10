@@ -175,3 +175,8 @@ with_fx :pitch_shift, pitch: -3.9, reps: 2 do
   sleep 3
 end
 
+# Bach
+
+https://gist.github.com/rbnpi/f17ab21789cf94bf42c62638473ec76c#file-bjs1031b-rf-rb-L9
+
+
