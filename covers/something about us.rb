@@ -49,10 +49,12 @@ end
 
 define :bass1 do |note|
   tick
-  with_fx :compressor, amp: 4, mix: 0.8 do
+  use_synth :saw
+  use_synth_defaults release: 0.25
+  with_fx :bitcrusher, amp: 0.5, mix: 0.8 do
     play note
     sleep 0.5
-    play note + 12, release: 0.3
+    play note + 12
     sleep 1
     play note, release: 0.5
     sleep 2.5
@@ -61,7 +63,6 @@ end
 
 live_loop :bass1, sync: :initial_chords do
   ##| stop
-  use_synth :fm
   bass1 46
   bass1 45
   bass1 38
@@ -150,7 +151,7 @@ end
 
 
 live_loop :mel1, sync: :bass1 do
-  ##| stop
+  stop
   use_synth :bass_foundation
   use_synth_defaults cutoff: 80
   with_fx :ping_pong, mix: 0.6, amp: 1.5 do
@@ -235,6 +236,94 @@ live_loop :mel1, sync: :bass1 do
     sleep 0.25
     play :d3
     sleep 4.5
+  end
+end
+
+live_loop :mel2, sync: :bass1 do
+  stop
+  use_synth :prophet
+  use_synth_defaults cutoff: 70
+  with_fx :reverb, mix: 0.6, amp: 1.5 do
+    
+    play :c4
+    sleep 0.5
+    play :d4
+    sleep 0.5
+    play :f4
+    sleep 0.25
+    play :g4
+    sleep 0.5
+    play :a4, sustain: 2
+    sleep 3.25
+    
+    play :d5
+    sleep 0.5
+    play :c5, sustain: 2
+    sleep 2.5
+    
+    play :f4
+    sleep 0.5
+    play :g4
+    sleep 0.5
+    play :a4
+    sleep 0.25
+    play :f4
+    sleep 0.5
+    play :g4, sustain: 2
+    sleep 3.25
+    
+    play :a4
+    sleep 0.25
+    play :g4
+    sleep 0.5
+    play :g4
+    sleep 0.5
+    play :f4
+    sleep 0.5
+    play :f4
+    sleep 0.5
+    play :d4
+    sleep 0.5
+    play :c4
+    sleep 0.5
+    play :d4
+    sleep 0.25
+    play :a4, sustain: 2
+    sleep 2.75
+    
+    play :d5
+    sleep 0.5
+    play :e5, sustain: 2
+    sleep 2.25
+    
+    play :e5
+    sleep 0.25
+    play :f5
+    sleep 0.5
+    play :e5
+    sleep 0.5
+    play :c5
+    sleep 0.5
+    play :a4, sustain: 2
+    sleep 3.25
+    
+    
+    play :d4
+    sleep 0.25
+    play :f4
+    sleep 0.25
+    play :g4
+    sleep 0.25
+    play :c5
+    sleep 0.5
+    play :a4
+    sleep 0.25
+    play :a4
+    sleep 0.5
+    play :f4
+    sleep 0.5
+    play :f4
+    sleep 0.5
   end
 end
 
