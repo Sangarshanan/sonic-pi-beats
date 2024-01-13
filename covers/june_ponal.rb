@@ -24,9 +24,6 @@ s1 = ring(
   1, 2, 0.5, 0.5, 3
 )
 
-mel2 =
-  t2 =
-  
 define :main_mel do
   50.times do
     tick(:i)

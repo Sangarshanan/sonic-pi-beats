@@ -108,11 +108,3 @@ live_loop :noisehat, sync: :kick do
   end
 end
 
-live_loop :carnatic_violin, sync: :mel1 do
-  ##| stop
-  with_fx :ixi_techno, mix: 0.2 do
-    sample "/Users/sangarshanan/Downloads/samples/Indian/violin-carnatic.wav", amp: 0.5, rate: 1.2
-    sleep 8
-  end
-end
-

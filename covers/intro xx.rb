@@ -1,3 +1,4 @@
+set_volume! 2
 use_bpm 110
 
 tt1 = ring(
@@ -94,6 +95,47 @@ with_fx :flanger, mix: 0.1, amp: 1.5 do
     end
   end
 end
+
+in_thread do
+  # chords
+  use_synth :bass_foundation
+  use_synth_defaults cutoff: 70, release: 0.8, attack: 0.2
+  
+  sleep 4
+  
+  4.times do
+    play [:f2, :f3], sustain: 4
+    sleep 4
+    play [:a2, :a3], sustain: 8
+    sleep 4
+  end
+  
+  sleep 3.5
+  use_synth :pluck
+  use_synth_defaults amp: 2, release: 0.8
+  with_fx :flanger, mix: 0.1, amp: 1.5, sustain: 1 do
+    with_fx :lpf, cutoff: 100 do
+      
+      2.times do
+        2.times do
+          play [:f3, :f2]
+          sleep 0.5
+          play [:f3, :f2], sustain: 1
+          sleep 3.5
+        end
+        
+        1.times do
+          play [:a3, :a2]
+          sleep 0.5
+          play [:a3, :a2], sustain: 1
+          sleep 3.5
+        end
+      end
+    end
+  end
+end
+
+
 sleep 32
 in_thread do
   x = 1
