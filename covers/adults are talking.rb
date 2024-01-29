@@ -124,3 +124,12 @@ live_loop :main_mel, sync: :disco do
     end
   end
 end
+
+synth2 = "/Users/sangarshanan/Downloads/samples/apple/Chill/Kyoto Night Synth.wav"
+live_loop :synth2, sync: :disco do
+  ##| stop
+  with_fx :reverb, mix: 0.5 do
+    sample synth2, beat_stretch: 16, amp: 0.5
+    sleep 16
+  end
+end

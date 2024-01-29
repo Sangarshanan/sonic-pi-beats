@@ -1,6 +1,6 @@
 use_bpm 100
 
-live_loop :up do
+live_loop :up, sync: :mel1 do
   with_fx :hpf do
     sleep 2
     sample "/Users/sangarshanan/Downloads/samples/going_up.wav", amp: 10
@@ -61,7 +61,7 @@ hat =   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 
 live_loop :kick, sync: :mel1 do
-  ##| stop
+  stop
   16.times do |hit|
     sample :bd_klub, hp4:30, amp: 2 if kick[hit] == 1
     sleep 0.25
@@ -69,7 +69,7 @@ live_loop :kick, sync: :mel1 do
 end
 
 live_loop :Snare, sync: :kick do
-  ##| stop
+  stop
   16.times do |hit|
     sample :sn_dolf, amp:rrand(0.6,1.2) if snare[hit] == 1
     sleep 0.25
@@ -79,7 +79,7 @@ end
 mar = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Maracas1.wav"
 
 live_loop :hat, sync: :kick do
-  ##| stop
+  stop
   16.times do |hit|
     sample mar, amp: 0.3, pan: rrand(-1,1)
     sample :drum_cymbal_closed,  release:0.3, amp: rrand(0.5, 1), pan: rrand(-1,1) if spread(13,16).tick
@@ -107,4 +107,4 @@ live_loop :noisehat, sync: :kick do
     sleep 7.5
   end
 end
-
+ 
