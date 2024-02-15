@@ -37,6 +37,10 @@ live_loop :bass do
     sample :bd_boom, rate: [6,5].choose, amp: 0.6
     
     sample :bass_hit_c
+
+    with_fx :slicer do
+      sample :misc_burp, amp: 0.5, rate: [1,-1].choose
+    end
     
   end
   sleep 8

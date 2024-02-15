@@ -36,3 +36,13 @@ live_loop :beep do
     end
   end
 end
+
+# Up and Down a Scale
+
+live_loop :up_down do
+  use_synth :tb303
+  with_fx :ixi_techno, amp: 0.3  do
+    play_pattern_timed scale(:c1, :ahirbhairav, num_octaves: 3)[6..24], 0.125, release: 0.1, attack: 0.1
+    play_pattern_timed scale(:c1, :ahirbhairav, num_octaves: 3)[6..24].reverse, 0.125, release: 0.1, attack: 0.1
+  end
+end

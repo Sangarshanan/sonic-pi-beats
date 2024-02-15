@@ -202,6 +202,18 @@ live_loop :clap do
 end
 
 
+# House loops
+
+live_loop :house_loop do
+  ##| stop
+  s = "/Users/sangarshanan/Downloads/samples/drum_loops/house/1.wav"
+  with_fx :band_eq do
+    sample s
+    sleep (sample_duration s)
+  end
+end
+
+
 # Random electronic misc Beat
 
 # Sliced Loop (Replace sample: :loop_industrial, :loop_amen)

@@ -151,15 +151,33 @@ live_loop :chop1, sync: :drum_loop do
 end
 
 
-# NDTV
-use_bpm 100
-ndtv = "/Users/sangarshanan/Downloads/samples/NDTV.wav"
-
-live_loop :rhythm do
-  with_fx :reverb do
-    sample ndtv, start: 0.009, finish: 0.1, cutoff: 75
-    sleep 5.5
+# Konnakol
+live_loop :up1 do
+  with_fx :hpf, amp: 5 do
+    sample "/Users/sangarshanan/Downloads/samples/Indian/Konnakkol1.wav", onset: 1
+    sleep 1
+    sample "/Users/sangarshanan/Downloads/samples/Indian/Konnakkol1.wav", onset: 2
+    sleep 1
+    sample "/Users/sangarshanan/Downloads/samples/Indian/Konnakkol1.wav", onset: 5
+    sleep 1
+    sample "/Users/sangarshanan/Downloads/samples/Indian/Konnakkol1.wav", onset: 11
+    sleep 1
   end
 end
 
+# Vocal
+live_loop :vocal do
+  stop
+  with_fx [:slicer, :reverb, :octaver].choose, amp: 1.4, mix: 0.4 do
+    
+    sample "/Users/sangarshanan/Downloads/samples/vocal/female-voice.wav", onset: [16, 5, 6].choose # 16 5
+    sleep 2
+    
+    sample "/Users/sangarshanan/Downloads/samples/vocal/female-voice.wav", onset: [7, 19].choose
+    sleep 1
+    
+    sample "/Users/sangarshanan/Downloads/samples/vocal/female-voice.wav", onset: 8, rate: -1
+    sleep 1
+  end
+end
 
