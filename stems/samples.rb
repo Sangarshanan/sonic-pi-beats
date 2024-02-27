@@ -181,3 +181,30 @@ live_loop :vocal do
   end
 end
 
+# Chop
+pm = "/Users/sangarshanan/Downloads/samples/songs/pm1.wav"
+live_loop :pm_loop do
+  ##| stop
+  with_fx :reverb, mix: 0.5 do
+    
+    sample pm, amp: 2, beat_stretch: 120, finish: 0.034
+    sleep 4
+    sample pm, amp: 2, beat_stretch: 120, start: 0.034, finish: 0.08
+    sleep 4
+    sample pm, amp: 2, beat_stretch: 120, start: 0.13, finish: 0.21
+    sleep 8
+    
+    
+    use_random_seed 5  # 15, 10, 5
+    
+    # [1,2,3,4,5,6,77]
+    # [79, 80, 81, 82, 83, 77].choose sleep 4
+    # [89,90,91,92,93,94,95,96,97,98,99,100] sleep 0.5
+    # [86, 87, 88, 89].choose sleep 4
+    
+    ##| sample pm, amp: 2, beat_stretch: 120, finish: 0.034
+    ##| sleep 1
+    
+  end
+end
+
