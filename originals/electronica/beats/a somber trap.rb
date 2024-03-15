@@ -11,7 +11,7 @@ live_loop :pm do
   end
 end
 
-live_loop :house_loop, sync: :pm do
+live_loop :trap_loop, sync: :pm do
   s = "/Users/sangarshanan/Downloads/samples/drum_loops/Trap/loop1.wav"
   with_fx :band_eq do
     sample s, beat_stretch: 32, amp: 5

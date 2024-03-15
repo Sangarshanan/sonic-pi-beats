@@ -209,4 +209,17 @@ live_loop :arpegio do
 end
 
 
+# Deep
+live_loop :deep_bass do
+  use_synth :bass_foundation
+  with_fx :ixi_techno, lpf: 70, amp: 0.2, amp_slide: 6 do |fx|
+    control fx, amp: 1
+    176.times do
+      amps = (ring 1, 0.5, 0.5, 0.5, 0.75, 0.5, 0.5, 0.5)
+      play :C2, attack: 0.05, release: 0.4, amp: amps.tick
+      sleep 0.25
+    end
+  end
+end
+
 

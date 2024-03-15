@@ -2,12 +2,12 @@ set_volume! 1.5
 
 use_bpm 220
 
-pm = "/Users/sangarshanan/Downloads/samples/Melody/jazz/piano2.wav"
-live_loop :pm_loop, sync: :drums do
+pm = "/Users/sangarshanan/Downloads/samples/Melody/jazz/piano3.wav"
+live_loop :piano, sync: :drums do
   ##| stop
   with_fx :reverb do
-    sample pm, amp: 3, beat_stretch: 64
-    sleep 64
+    sample pm, amp: 4, beat_stretch: 256
+    sleep 256
   end
 end
 

@@ -102,3 +102,22 @@ with_fx :gverb, room: 20,mix: 0.7 do
     end
   end
 end
+
+
+### Noise
+
+live_loop :noise do
+  use_synth :noise
+  use_synth_defaults attack: 4, sustain: 12, release: 4 # de/increase from 1 to whatever to go from single notes to a sound plane
+  4.times do
+    with_fx :rbpf, centre: (scale(:c4, :minor_pentatonic, num_octaves: 3).choose), res: 0.95 do # change scale for melody/harmony and resonance for noise to notes
+      with_fx :slicer, phase: [0.35, 0.65, 0.85].choose do
+        with_fx :slicer, phase: 0.25, pulse_width: 0.8, smooth: 0.1, invert_wave: 1 do # interleave slicer to create rhythmic complexity
+          play :c1, amp: 1
+        end
+      end
+    end
+    sleep 1
+  end
+end
+
