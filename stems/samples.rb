@@ -165,6 +165,28 @@ live_loop :up1 do
   end
 end
 
+vocal = "/Users/sangarshanan/Downloads/samples/Indian/Konnakkol1.wav"
+live_loop :vocal do
+  ##| stop
+  with_fx :slicer, mix: 0.3 do
+    
+    ##| sample vocal, beat_stretch: 90, start: 0.40, finish: 0.445, amp: 2
+    ##| sleep 1
+    
+    ##| sample vocal, beat_stretch: 90, start: 0.48, finish: 0.5, amp: 2
+    ##| sleep 1
+    
+    ##| sample vocal, beat_stretch: 90, start: 0.51, finish: 0.52, amp: 2
+    ##| sleep 1
+    
+    sample vocal, beat_stretch: 90, start: 0.48, finish: 0.497, amp: 2
+    sleep 1
+    
+    
+  end
+end
+
+
 # Vocal
 live_loop :vocal do
   stop

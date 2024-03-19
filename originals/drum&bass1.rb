@@ -3,14 +3,20 @@ set_volume! 2
 use_bpm 100
 
 live_loop :amen_break, sync: :bass_drum do
-  stop
-  effect = [:slicer, :reverb, :ixi_techno].choose
-  p = [0.25, 0.5, 0.125].choose
-  with_fx effect, phase: p, wave: 0, mix: rrand(0.4, 1) do
-    r = [1, 1, 1].choose
-    sample [:loop_amen, :loop_breakbeat].choose, beat_stretch: 2, rate: r , amp: 4
+  ##| stop
+  a = rrand(0.50, 0.75)
+  if a < 0.6
+    sample "/Users/sangarshanan/Downloads/samples/drum_loops/dnb/broken_amen.wav", finish: 0.5, beat_stretch: 16, rate: 0.5, amp: 2
+    sleep 8
+  else
+    effect = [:slicer, :reverb, :ixi_techno].choose
+    p = [0.25, 0.5, 0.125].choose
+    with_fx effect, phase: p, wave: 0, mix: rrand(0.4, 1) do
+      r = [1, 1, 0.5].choose
+      sample [:loop_amen, :loop_breakbeat].choose, beat_stretch: 2, rate: r , amp: 4
+    end
+    sleep 2
   end
-  sleep 2
 end
 
 live_loop :bass_drum do

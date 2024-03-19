@@ -25,7 +25,7 @@ live_loop :aaj_ka2, sync: :hats  do
   stop
   use_random_seed 123 # change to 1234
   8.times do
-    sample aaj_ka, beat_stretch: 8, onset: rrand(5,100), amp: 20
+    sample aaj_ka, beat_stretch: 8, onset: rrand(5,100), amp: 2
     sleep 0.5
   end
 end
