@@ -1,5 +1,22 @@
 use_bpm 160
 
+
+bass1 = "/Users/sangarshanan/Downloads/samples/bass/atonal.wav"
+live_loop :bss_loop do
+  ##| stop
+  sample bass1, beat_stretch: 16, amp: 2
+  sleep 16
+end
+
+drum_loop1 = "/Users/sangarshanan/Downloads/samples/drum_loops/dubstep/1.wav"
+live_loop :drum_drop, sync: :bss_loop, delay: 0.8 do
+  ##| stop
+  with_fx :reverb, mix: 0.5 do
+    sample drum_loop1, beat_stretch: 32, amp: 10
+    sleep 32
+  end
+end
+
 live_loop :starter do
   ##| stop
   with_fx :wobble, mix: 0.3, phase: 0.25 do
@@ -32,7 +49,7 @@ live_loop :luuppibiitti, sync: :bass do
 end
 
 live_loop :beats, sync: :bass do
-  ##| stop
+  stop
   sample :bd_tek, amp: 0.4
   with_fx :echo, phase: 0.125, mix: 0.4 do
     sample  :drum_cymbal_soft, sustain: 0, release: 0.1, amp: 0.4
@@ -59,11 +76,15 @@ live_loop :dowdowdow, sync: :bass do
   end
 end
 
-live_loop :carnatic_violin, sync: :bass do
-  ##| stop
-  with_fx :reverb do
-    sample "/Users/sangarshanan/Downloads/samples/Indian/violin-carnatic.wav", amp: 2
-    sleep 0.5
+
+v = "/Users/sangarshanan/Downloads/samples/Indian/violin-carnatic.wav"
+
+live_loop :carnatic_violin do
+  stop
+  use_random_seed 1234 # change to3 1234 123
+  4.times do
+    sample v, beat_stretch: 10, onset: rrand(5,100)
+    sleep 1
   end
 end
 

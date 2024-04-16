@@ -44,3 +44,36 @@ live_loop :sax_loop, sync: :elec do
     sleep 20
   end
 end
+
+choir = "/Users/sangarshanan/Downloads/samples/vocal/gospel-choir.wav"
+live_loop :sz_loop, sync: :aro do
+  
+  use_random_seed 10
+  with_fx :reverb, mix: 0.5 do
+    
+    
+    [1,2].choose.times do
+      
+      sample choir, start: 0.5, finish: 0.65
+      sleep 2.5
+      
+      sample choir, finish: 0.15
+      sleep 2.5
+    end
+    
+    sample choir, start: 0.5, finish: 0.65
+    sleep 2.5
+    
+    
+    [2,3].choose.times do
+      
+      sample choir, finish: 0.15
+      sleep 2.5
+      
+      sample choir, start: 0.2, finish: 0.35
+      sleep 2.5
+    end
+    
+  end
+end
+

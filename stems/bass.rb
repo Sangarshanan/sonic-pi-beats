@@ -222,4 +222,15 @@ live_loop :deep_bass do
   end
 end
 
+# density
+live_loop :density do
+  density 4 do
+    4.times do
+      play [:e4, :c5].choose, release: 0.1
+      sleep 1
+    end
+  end
+end
+
+
 

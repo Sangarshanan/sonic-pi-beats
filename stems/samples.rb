@@ -10,7 +10,7 @@ live_loop :carnatic_violin, sync: :amen_break do
 end
 
 # Raga bhimpalasi
-raga = "/Users/sangarshanan/Downloads/samples/raga-bhimpalasi.wav"
+raga = "/Users/sangarshanan/Downloads/samples/Indian/raga-bhimpalasi.wav"
 live_loop :sam, sync: :kick   do
   ##| stop
   with_fx :reverb do
@@ -230,3 +230,26 @@ live_loop :pm_loop do
   end
 end
 
+
+use_bpm 120
+
+pm = "/Users/sangarshanan/Downloads/samples/songs/pm1.wav"
+live_loop :pm_loop do
+  ##| stop
+  with_fx :reverb, mix: 0.4 do
+    
+    sample pm, amp: 2, beat_stretch: 54, finish: 0.045
+    sleep 2.5
+    
+    sample pm, amp: 2, beat_stretch: 54, start: 0.052, finish: 0.07
+    sleep 2.5
+    
+    sample pm, amp: 2, beat_stretch: 60, start: 0.115, finish: 0.173
+    sleep 3.5
+    
+    sample pm, amp: 2, beat_stretch: 60, start: 0.18, finish: 0.204
+    sleep 1.5
+    
+    
+  end
+end

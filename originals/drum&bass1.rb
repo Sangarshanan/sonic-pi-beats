@@ -54,4 +54,37 @@ live_loop :vocal, sync: :bass_drum do
   end
 end
 
+sample1 = "/Users/sangarshanan/Downloads/samples/Songs/pvm_misc1.wav"
+live_loop :sample1, sync: :amen_break do
+  ##| stop
+  with_fx :reverb do
+    sample sample1, beat_stretch: 8, amp: 0.5, finish: 0.5
+    sleep 2
+  end
+end
 
+
+sample2 = "/Users/sangarshanan/Downloads/samples/Songs/pvm_flow.wav"
+live_loop :sample2 do
+  ##| stop
+  with_fx :reverb do
+    
+    sample sample2, beat_stretch: 8, amp: 2, finish: 0.5
+    sleep 4
+    
+    4.times do
+      sample sample2, beat_stretch: 8, amp: 2, start: 0.5, finish: 0.55
+      sleep 1
+    end
+    
+    sample sample2, beat_stretch: 8, amp: 2, start: 0.5, finish: 0.74
+    sleep 2
+    
+    4.times do
+      sample sample2, beat_stretch: 8, amp: 2, start: 0.65, finish: 0.74, rate: 1
+      sleep 1
+    end
+    
+    
+  end
+end
