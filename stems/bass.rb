@@ -233,4 +233,31 @@ live_loop :density do
 end
 
 
+# Acid bass
+use_bpm 123
+
+live_loop :bassline do
+  ##| stop
+  
+  use_synth_defaults amp: 2, release: 0.2, sustain: 0.1
+  use_synth :tb303
+  
+  key = [:f1, :g1, :a1].choose
+  
+  with_fx [:lpf, :ixi_techno, :reverb].choose, cutoff: 75 do
+    play key
+    sleep 0.375
+    play key+12
+    sleep 0.375
+    play key+7
+    sleep 0.375
+    play key+10
+    sleep 0.375
+    play key+5
+    sleep 2-0.375*4
+  end
+end
+
+
+
 

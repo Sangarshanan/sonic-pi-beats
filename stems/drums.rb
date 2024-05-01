@@ -613,4 +613,15 @@ live_loop :hat do
 end
 
 
+# Flibble
 
+live_loop :flibble do
+  ##| stop
+  sample :bd_haus, rate: 1
+  sample :bass_thick_c, rate: 0.5
+  sleep 2
+  with_fx :ping_pong do
+    sample :elec_beep, rate: -2
+  end
+  sleep 2
+end

@@ -180,3 +180,29 @@ end
 https://gist.github.com/rbnpi/f17ab21789cf94bf42c62638473ec76c#file-bjs1031b-rf-rb-L9
 
 
+# More Synth chords
+
+live_loop :synth2, sync: :flibble do
+  ##| stop
+  use_synth_defaults amp: 2.5, release: 4, sustain: 0
+  use_synth :prophet
+  
+  with_fx :slicer, phase: 0.5, invert_wave: 1, mix: 0.3 do
+    with_fx :reverb, mix: 0.7, room: 0.8 do
+      
+      with_fx :ixi_techno, cutoff: 100 do
+        
+        play chord(:C3, :major7, invert: 0)
+        sleep 4
+        play chord(:F3, :major7, invert: 0)
+        sleep 4
+        play chord(:Bb3, :major7, invert: 0)
+        sleep 4
+        play chord(:G3, :major7, invert: 0)
+        sleep 4
+      end
+    end
+  end
+end
+
+
