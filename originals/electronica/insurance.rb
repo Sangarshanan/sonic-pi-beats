@@ -1,5 +1,5 @@
 use_bpm 100
-insur = "/Users/sangarshanan/Downloads/samples/noInsurance.wav"
+insur = "/Users/sangarshanan/Downloads/samples/vocal/noInsurance.wav"
 
 kat = "/Users/sangarshanan/Downloads/samples/crate1/Sample 07.wav"
 live_loop :back, sync: :insur do
