@@ -151,3 +151,25 @@ live_loop :sample2, sync: :flibble do
     
   end
 end
+
+
+live_loop :all_fine, sync: :flibble do
+  ##| stop
+  with_fx :reverb do
+    sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/take a chill pill.wav", amp: 0.8, beat_stretch: 3
+    sleep 8
+  end
+end
+
+
+ele = "/Users/sangarshanan/Downloads/samples/Melody/elec/128_C_Seq.wav"
+live_loop :elec, sync: :flibble  do
+  ##| stop
+  effect = [:reverb, :ixi_techno, :wobble, :lpf].choose
+  p = [0.25, 0.5, 0.125].choose
+  with_fx effect, phase: p, wave: 0, mix: rrand(0.4, 1) do
+    sample ele, amp: 5, beat_stretch: 65, finish: 0.12
+    sleep 8
+  end
+end
+
