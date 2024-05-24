@@ -1,10 +1,10 @@
 use_bpm 100
 
 sitar_1 = 0
-sitar_2 = 0
+sitar_2 = 1
 
-sax = 1
-chords = 0
+sax = 0
+chords = 1
 sitar_repeat = 0
 
 drum = 0
@@ -44,7 +44,7 @@ live_loop :repeat_sitar, sync: :chords do
   end
 end
 
-saz = "/Users/sangarshanan/Downloads/samples/Jazzy/sax1.wav"
+saz = "/Users/sangarshanan/Downloads/samples/Melody/Jazz/sax1.wav"
 live_loop :saz, sync: :chords   do
   if sax < 1 then stop end
   with_fx :reverb do

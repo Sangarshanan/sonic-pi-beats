@@ -85,6 +85,5 @@ live_loop :sample2 do
       sleep 1
     end
     
-    
   end
 end

@@ -6,19 +6,29 @@ pm = "/Users/sangarshanan/Downloads/samples/Melody/jazz/piano3.wav"
 live_loop :piano, sync: :drums do
   ##| stop
   with_fx :reverb do
-    sample pm, amp: 4, beat_stretch: 256
-    sleep 256
+    sample pm, amp: 4, beat_stretch: 128
+    sleep 128
   end
 end
 
 sx = "/Users/sangarshanan/Downloads/samples/Melody/jazz/sax2.wav"
-live_loop :sax_loop, sync: :drums do
-  ##| stop
+live_loop :sax_loop, sync: :piano do
+  stop
   with_fx :reverb do
     sample sx, amp: 4, beat_stretch: 64
     sleep 64
   end
 end
+
+brs = "/Users/sangarshanan/Downloads/samples/Melody/brass/trumpet2.wav"
+live_loop :brs_loop, sync: :sax_loop do
+  stop
+  with_fx :reverb do
+    sample brs, amp: 5, beat_stretch: 32
+    sleep 32
+  end
+end
+
 
 saz = "/Users/sangarshanan/Downloads/samples/vocal/gospel-choir.wav"
 live_loop :sz_loop, sync: :drums do
@@ -35,27 +45,27 @@ live_loop :sz_loop, sync: :drums do
     
     
     
-    ##| [1,2].choose.times do
+    [1,2].choose.times do
+      
+      sample saz, start: 0.5, finish: 0.6
+      sleep 4
+      
+      sample saz, finish: 0.1
+      sleep 4
+    end
     
-    ##|   sample saz, start: 0.5, finish: 0.6
-    ##|   sleep 4
-    
-    ##|   sample saz, finish: 0.1
-    ##|   sleep 4
-    ##| end
-    
-    ##| sample saz, start: 0.5, finish: 0.6
-    ##| sleep 4
+    sample saz, start: 0.5, finish: 0.6
+    sleep 4
     
     
-    ##| [2,3].choose.times do
-    
-    ##|   sample saz, finish: 0.1
-    ##|   sleep 4
-    
-    ##|   sample saz, start: 0.2, finish: 0.3
-    ##|   sleep 4
-    ##| end
+    [2,3].choose.times do
+      
+      sample saz, finish: 0.1
+      sleep 4
+      
+      sample saz, start: 0.2, finish: 0.3
+      sleep 4
+    end
     
   end
 end
@@ -166,7 +176,7 @@ end
 mar = "/Users/sangarshanan/Downloads/samples/808_drum_kit/percussion/808-Maracas1.wav"
 
 live_loop :mar, sync: :house_loop do
-  stop
+  ##| stop
   with_fx :reverb, mix: 0 do
     sample mar, amp: rrand(1.2, 1.7), pan: rrand(-0.25, 0.25)
   end
