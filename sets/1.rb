@@ -234,6 +234,22 @@ live_loop :bassline2, sync: :flibble  do
 end
 
 
+live_loop :keep_going, sync: :flibble do
+  ##| stop
+  with_fx :wobble, mix: 0.5, amp: 1.5 do
+    
+    ##| sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", beat_stretch: 5, start: 0.2
+    ##| sleep 8
+    
+    2.times do
+      sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", start: 0.5, beat_stretch: 4
+      sleep 2
+    end
+    
+  end
+end
+
+
 live_loop :beat2, sync: :bassline2 do
   stop
   s = "/Users/sangarshanan/Downloads/samples/drum_loops/dubstep/1.wav"
