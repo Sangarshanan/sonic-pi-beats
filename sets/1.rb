@@ -1,6 +1,6 @@
 use_bpm 120
 
-###### Section 1 #####
+###### Techno/D&B #####
 
 live_loop :hollow do
   invert=  [0, 1, 2].choose
@@ -9,7 +9,7 @@ live_loop :hollow do
 end
 
 live_loop :flibble, sync: :hollow do
-  ##| stop
+  stop
   use_random_seed 12
   
   with_fx :lpf do
@@ -119,16 +119,18 @@ live_loop :melody, sync: :flibble do
   end
 end
 
-
-###### Section 2 #####
-###### Section 2 #####
 ###### Section 2 #####
 
-live_loop :snare, sync: :flibble do
-  stop
-  sample :sn_dolf, rate: -1
-  sleep 4
+live_loop :density, sync: :flibble do
+  ##| stop
+  density 4 do
+    4.times do
+      play [:e4, :c5].choose, release: 0.1
+      sleep 1
+    end
+  end
 end
+
 
 live_loop :deep_bass, sync: :flibble do
   stop
@@ -141,6 +143,44 @@ live_loop :deep_bass, sync: :flibble do
       sleep 0.25
     end
   end
+end
+
+chords = [(chord :C, :minor7), (chord :Ab, :major7), (chord :Eb, :major7), (chord :Bb, "7")].ring
+c = chords[0] #
+live_loop :deep_bass2, sync: :flibble do
+  ##| stop
+  use_synth :gabberkick
+  effect = [:slicer, :reverb, :ixi_techno, :ping_pong].choose
+  with_fx effect, lpf: 70, amp: 0.2, amp_slide: 2 do |fx|
+    control fx, amp: 1
+    3.times do
+      play c[0]
+      sleep 1 # 0.25
+    end
+    play c[2]
+    sleep 0.5
+    play c[1]
+    sleep 0.5
+    c = chords.tick
+  end
+end
+
+live_loop :techno, sync: :deep_bass2 do
+  stop
+  s = "/Users/sangarshanan/Downloads/samples/drum_loops/techno/1.wav"
+  with_fx :band_eq do
+    sample s, amp: 2
+    sleep (sample_duration s)
+  end
+end
+
+
+###### Section 3 #####
+
+live_loop :snare, sync: :flibble do
+  stop
+  sample :sn_dolf, rate: -1
+  sleep 4
 end
 
 
@@ -204,14 +244,14 @@ live_loop :sample2, sync: :flibble do
     ##|   sample sample2, beat_stretch: 8, start: 0.65, finish: 0.74, rate: 1
     ##|   sleep 1
     ##| end
-    
+
   end
 end
 
 
-###### Section 3 #####
-###### Section 3 #####
-###### Section 3 #####
+###### Section 4 #####
+###### Section 4 #####
+###### Section 4 #####
 
 
 live_loop :all_fine, sync: :flibble do
@@ -235,11 +275,11 @@ end
 
 
 live_loop :keep_going, sync: :flibble do
-  ##| stop
+  stop
   with_fx :wobble, mix: 0.5, amp: 1.5 do
     
-    ##| sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", beat_stretch: 5, start: 0.2
-    ##| sleep 8
+    sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", beat_stretch: 5, start: 0.2
+    sleep 8
     
     2.times do
       sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", start: 0.5, beat_stretch: 4
@@ -283,5 +323,3 @@ live_loop :elec, sync: :flibble  do
     
   end
 end
-
-
