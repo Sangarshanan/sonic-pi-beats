@@ -1,5 +1,30 @@
 # Melody techniques
 
+# https://gist.github.com/acirtautas/488089db4c1e6613a10f
+
+
+# Random editor
+
+live_loop :rndy, sync: :bass do |i|
+  
+  use_synth :tb303
+  tick
+  
+  variety = 1 #how many different riffs?
+  length = 10 #how many pitches in riffs?
+  
+  rnd =  (ring 1,7,23,53).look * i % variety
+  use_random_seed rnd
+  puts rnd
+  
+  length.times do
+    play (scale :c4, :minor_pentatonic).choose, release: 0.5, amp: 0.4
+    sleep 0.5
+  end
+  
+  i += 1
+end
+
 
 # Basic Chords with FX
 

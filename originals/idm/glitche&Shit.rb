@@ -1,8 +1,8 @@
 use_bpm 150
 
 
-live_loop :beat1, sync: :all_fine do
-  ##| stop
+live_loop :beat1, sync: :synth_glitch do
+  stop
   effect = [:ixi_techno, :bitcrusher, :distortion].choose
   with_fx effect, mix: rrand(0.4, 1) do
     # :loop_amen, amp: 1
@@ -11,23 +11,9 @@ live_loop :beat1, sync: :all_fine do
   sleep 8
 end
 
-live_loop :all_fine, sync: :synth_glitch do
-  ##| stop
-  with_fx :wobble, mix: 0.5, amp: 1.2 do
-    sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", beat_stretch: 4, start: 0.2, beat_stretch: 5
-    sleep 8
-    
-    2.times do
-      sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/you almost had me goin.wav", start: 0.5, beat_stretch: 4
-      sleep 4
-    end
-    
-  end
-end
-
 
 live_loop :synth_glitch do
-  ##| stop
+  stop
   with_fx :reverb, phase: 0.0625, decay: 4 do |ctl|
     
     tick
@@ -42,8 +28,8 @@ live_loop :synth_glitch do
   end
 end
 
-live_loop :nappe, sync: :synth_glitch do
-  ##| stop
+live_loop :nappe, sync: :bass do
+  stop
   use_synth :sc808_tommid
   with_fx :bitcrusher, phase: 0.5 do
     n = scale(:e1, :major, num_octaves: 3).choose
@@ -52,8 +38,9 @@ live_loop :nappe, sync: :synth_glitch do
   end
 end
 
+### Section 2
 
-live_loop :bass, sync: :synth_glitch do
+live_loop :bass do
   ##| stop
   
   use_synth :sine
@@ -74,5 +61,55 @@ live_loop :bass, sync: :synth_glitch do
   play :c4, cutoff: cu, amp: 2, pan: rdist(0.5)
   
   sleep 4
-  
 end
+
+
+choir = "/Users/sangarshanan/Downloads/samples/vocal/choir-dorian.wav"
+live_loop :choirs, sync: :bass do
+  stop
+  with_fx :compressor do
+    with_fx :slicer do
+      sample choir, beat_stretch: 32
+      sleep 32
+    end
+  end
+end
+
+
+live_loop :tron, sync: :bass do
+  ##| stop
+  notes =  (ring :b1, :b2, :e1, :e2, :b3, :e3)
+  with_synth :dsaw do
+    with_fx(:slicer, phase: [0.25].choose) do
+      with_fx(:reverb, room: 0.5, mix: 0.3) do
+        
+        n1 = (chord notes.choose, :minor).choose
+        n2 = (chord notes.choose, :minor).choose
+        
+        p = play n1, release: 8, note_slide: 4, cutoff: 30, cutoff_slide: 4, detune: rrand(0, 0.2)
+        control p, note: n2, cutoff: rrand(80, 120)
+      end
+    end
+  end
+  sleep 8
+end
+
+
+live_loop :break, sync: :bass do
+  ##| stop
+  with_fx :reverb do
+    sample "/Users/sangarshanan/Downloads/samples/drum_loops/dubstep/chill.wav", beat_stretch: 8, amp: 3
+    sleep 8
+  end
+end
+
+live_loop :all_fine, sync: :bass do
+  ##| stop
+  with_fx :wobble, mix: 0.5, amp: 3 do
+    sleep 16
+    sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/i dont even know what im doin.wav", start: 0.2, beat_stretch: 5, release: 0.8
+  end
+end
+
+
+
