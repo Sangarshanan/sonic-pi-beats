@@ -73,6 +73,16 @@ live_loop :vocal2  do
 end
 
 
+beat2 = "/Users/sangarshanan/Downloads/samples/songs/chaudhary_music.wav"
+live_loop :chaudary do
+  ##| stop
+  with_fx :reverb do
+    sample beat2, beat_stretch: 600, start: 0.1, finish: 0.11
+    sleep 6
+  end
+end
+
+
 trap_loop1 = "/Users/sangarshanan/Downloads/samples/drum_loops/Trap/5.wav"
 live_loop :trap_loop1, sync: :veena  do
   ##| stop
