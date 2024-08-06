@@ -1,44 +1,6 @@
 use_bpm 150
 
-
-live_loop :beat1, sync: :synth_glitch do
-  stop
-  effect = [:ixi_techno, :bitcrusher, :distortion].choose
-  with_fx effect, mix: rrand(0.4, 1) do
-    # :loop_amen, amp: 1
-    sample :loop_breakbeat, beat_stretch: 8, amp: 2
-  end
-  sleep 8
-end
-
-
-live_loop :synth_glitch do
-  stop
-  with_fx :reverb, phase: 0.0625, decay: 4 do |ctl|
-    
-    tick
-    control ctl, mix: knit(0,8, 1,2).shuffle.choose
-    syn = [:cnoise, :pluck, :tb303, :tech_saws, :dull_bell].choose
-    use_synth syn
-    use_synth_defaults release: rrand(0.08, 0.13), cutoff: rrand(40,120)
-    
-    play scale(48-12, :chromatic, num_octaves: 3).choose,
-      pan: rdist(0.25) if spread(4, 5).choose
-    sleep 0.25
-  end
-end
-
-live_loop :nappe, sync: :bass do
-  stop
-  use_synth :sc808_tommid
-  with_fx :bitcrusher, phase: 0.5 do
-    n = scale(:e1, :major, num_octaves: 3).choose
-    play n
-    sleep 0.5
-  end
-end
-
-### Section 2
+## Main
 
 live_loop :bass do
   ##| stop
@@ -63,6 +25,43 @@ live_loop :bass do
   sleep 4
 end
 
+live_loop :synth_glitch do
+  stop
+  with_fx :reverb, phase: 0.0625, decay: 4 do |ctl|
+    
+    tick
+    control ctl, mix: knit(0,8, 1,2).shuffle.choose
+    syn = [:cnoise, :pluck, :tb303, :tech_saws, :dull_bell].choose
+    use_synth :tech_saws
+    use_synth_defaults release: rrand(0.08, 0.13), cutoff: rrand(100,120)
+    
+    play scale(48-12, :chromatic, num_octaves: 3).choose,
+      pan: rdist(0.25) if spread(4, 5).choose
+    sleep 0.25
+  end
+end
+
+
+## Section 1
+
+live_loop :beat1, sync: :synth_glitch do
+  stop
+  effect = [:ixi_techno, :bitcrusher, :distortion].choose
+  # :bpf effect
+  with_fx effect, mix: rrand(0.4, 1) do
+    # :loop_amen, amp: 1
+    
+    ##| vol: 0.8, 0.6, 0.4, 0.2
+    # :loop_breakbeat
+    
+    sample :loop_amen, beat_stretch: 8, amp: 0.4
+    
+  end
+  sleep 8
+end
+
+
+### Section 2
 
 choir = "/Users/sangarshanan/Downloads/samples/vocal/choir-dorian.wav"
 live_loop :choirs, sync: :bass do
@@ -79,8 +78,8 @@ end
 live_loop :tron, sync: :bass do
   ##| stop
   notes =  (ring :b1, :b2, :e1, :e2, :b3, :e3)
-  with_synth :dsaw do
-    with_fx(:slicer, phase: [0.25].choose) do
+  with_synth :tb303 do # dsaw
+    with_fx(:wobble, phase: [0.25].choose) do # slicer
       with_fx(:reverb, room: 0.5, mix: 0.3) do
         
         n1 = (chord notes.choose, :minor).choose
@@ -103,13 +102,26 @@ live_loop :break, sync: :bass do
   end
 end
 
-live_loop :all_fine, sync: :bass do
-  ##| stop
-  with_fx :wobble, mix: 0.5, amp: 3 do
-    sleep 16
-    sample "/Users/sangarshanan/Downloads/samples/lofi/voiceover/i dont even know what im doin.wav", start: 0.2, beat_stretch: 5, release: 0.8
-  end
-end
 
+s = "/Users/sangarshanan/Downloads/samples/lofi/voiceover/i dont even know what im doin.wav"
+live_loop :voiceover  do
+  ##| stop
+  
+  sample s, beat_stretch: 2
+  sleep 4
+  
+  use_random_seed 1234 # change to 1234
+  1.times do
+    effect = [:reverb, :octaver, :wobble].choose
+    bs = [2,3,4,5].choose
+    8.times do
+      with_fx effect do
+        sample s, beat_stretch: bs, onset: rrand(5,100), amp: 2
+        sleep 0.5
+      end
+    end
+  end
+  
+end
 
 
