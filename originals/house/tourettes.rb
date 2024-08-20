@@ -10,27 +10,7 @@ live_loop :flibble do
   end
 end
 
-
-vocal = "/Users/sangarshanan/Downloads/samples/drum_loops/dubstep/drop1.wav"
-live_loop :vocal do
-  stop
-  with_fx :echo, mix: 0.3, amp: 2 do
-    
-    ##| sample vocal, beat_stretch: 50
-    ##| sleep 50
-    
-    2.times do
-      sample vocal, beat_stretch: 50, start: 0.917
-      sleep 4
-    end
-    
-    ##| sleep 1
-    
-  end
-  
-end
-
-vocal = "/Users/sangarshanan/Downloads/samples/vocal/vine1.wav"
+vocal = "/Volumes/Roguentropy/Samples/vocal/vine1.wav"
 
 live_loop :vocal_dandb, sync: :flibble do
   ##| stop
@@ -67,7 +47,7 @@ end
 
 live_loop :techno, sync: :vocal_dandb do
   ##| stop
-  s = "/Users/sangarshanan/Downloads/samples/drum_loops/techno/2.wav"
+  s = "/Volumes/Roguentropy/Samples/drum_loops/techno/2.wav"
   with_fx :band_eq do
     sample s, beat_stretch: 32, amp: 3
     sleep 32

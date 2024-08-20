@@ -625,3 +625,26 @@ live_loop :flibble do
   end
   sleep 2
 end
+
+
+# IDM pattern
+
+live_loop :beat do
+  ##| stop
+  with_fx :bpf do # :reverb
+    
+    sample :arovane_beat_c, beat_stretch: 20, finish: 0.5
+    
+    sleep 10
+  end
+end
+
+live_loop :start do
+  with_fx :reverb do
+    play :b2 , sustain: 1.7, release: 0.3, note_slide: 2, amp: 0.5 do |s|
+      control s, note: :b1
+    end
+    sleep 10
+  end
+end
+
