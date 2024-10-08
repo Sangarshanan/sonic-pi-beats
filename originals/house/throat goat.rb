@@ -1,5 +1,19 @@
 use_bpm 120
 
+"""
+live_loop :vocal do
+  ##| stop
+  with_fx [:slicer].choose, mix: 0.4 do
+    
+    sample "/Volumes/Roguentropy/Samples/memes/sapne.wav", amp: 0.8
+    
+    sleep 100
+    
+  end
+end
+
+"""
+
 live_loop :met do
   sleep 0.5
 end

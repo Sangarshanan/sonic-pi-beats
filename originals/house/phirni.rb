@@ -1,6 +1,6 @@
 use_bpm 120
 
-set_volume! 2
+set_volume! 0.5
 
 kick_play = 1
 
@@ -9,7 +9,7 @@ hat_open_play = 1
 snare_play = 1
 
 bass_play = 1
-sample_play = 1
+sample_play = 0
 
 live_loop :met do
   sleep 1
@@ -20,16 +20,20 @@ with_fx :reverb, room: 0.5 do
     if kick_play < 1 then stop end
     use_sample_defaults rate: 1, amp: 1.2, lpf: 100
     
-    15.times do
-      sample :bd_tek
-      sleep 1
+    with_fx :bpf do # :reverb :bpf
+      
+      7.times do
+        sample :bd_tek, pan: rdist(0.25), rate: 0.5
+        sleep 1
+      end
+      
+      sample :bd_klub
+      sleep 0.5
+      
+      sample :bd_klub
+      sleep 0.5
     end
     
-    sample :bd_tek
-    sleep 0.5
-    
-    sample :bd_tek
-    sleep 0.5
   end
   
   live_loop :hat1, sync: :met do
@@ -84,11 +88,15 @@ end
 
 # bass ##################
 
-live_loop :bass, sync: :met do
+live_loop :bass, sync: :kick do
   if bass_play < 1 then stop end
   use_synth_defaults release: 0.1, sustain: 0.125, amp: 0.4
-  n = :g1
-  s = [:blade, :bass_foundation].choose
+  n = :c2
+  s = [:sine].choose
+  
+  ##| n = :g1
+  ##| s = [:blade, :bass_foundation].choose
+  
   
   synth s, note: n
   sleep 0.375
@@ -108,15 +116,13 @@ live_loop :bass, sync: :met do
   sleep 0.25
 end
 
-
-##| sample_loop = "/Volumes/Roguentropy/Samples/lofi/voiceover/you need to chill.wav"
-sample_loop = "/Volumes/Roguentropy/Samples/Indian/carnatic-vocal.wav"
-live_loop :sample, sync: :met do
+sample_loop = "/volumes/roguentropy/samples/indian/carnatic-vocal.wav"
+live_loop :sample, sync: :kick do
   if sample_play < 1 then stop end
   
   2.times do
     with_fx :reverb do
-      a = 20 # 8 10 20
+      a = 8 # 8 10 20
       8.times do
         sample sample_loop, onset: a, amp: 0.5, beat_stretch: 11
         sleep 0.5
