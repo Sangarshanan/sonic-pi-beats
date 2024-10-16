@@ -1,7 +1,7 @@
 use_bpm 120
 
 live_loop :vocal do
-  ##| stop
+  stop
   
   with_fx :reverb do
     with_fx :bitcrusher, mix: 0.4, amp: 1.5 do
@@ -33,30 +33,30 @@ live_loop :vocal do
 end
 
 
-bass1 = "/Volumes/Roguentropy/Samples/bass/dnb-modex.wav"
-live_loop :bss_loop, sync: :dandb do
-  stop
-  effect = [:ixi_techno, :reverb, :octaver].choose
+bass1 = "/Volumes/Roguentropy/Samples/bass/atonal.wav"
+live_loop :bss_loop do
+  ##| stop
+  effect = [:ixi_techno, :reverb, :wobble].choose
   1.times do
     with_fx effect do
-      sample bass1, beat_stretch: 20
-      sleep 20
+      sample bass1, beat_stretch: 10, finish: 0.5, amp: 0.8
+      sleep 5
     end
   end
 end
 
-live_loop :dandb, sync: :bass_drum do
+live_loop :dandb, sync: :bss_loop do
   ##| stop
   s = "/Volumes/Roguentropy/Samples/drum_loops/dnb/liquid-2.wav"
   with_fx :reverb do
-    sample s, beat_stretch: 20, finish: 0.5
+    sample s, beat_stretch: 20, finish: 0.5 # beat 10, sleep 5
     sleep 10
   end
 end
 
 live_loop :bass_drum do
   ##| stop
-  sample :bd_haus, cutoff: 70, amp: 2
+  sample :bd_haus, cutoff: 70, amp: 5
   sleep 1.25
 end
 
