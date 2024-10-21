@@ -1,14 +1,14 @@
 use_bpm 120
 
-set_volume! 0.5
+set_volume! 2
 
-kick_play = 1
+kick_play = 0
 
-hat_close_play = 1
+hat_close_play = 0
 hat_open_play = 1
 snare_play = 1
 
-bass_play = 1
+bass_play = 0
 sample_play = 0
 
 live_loop :met do
@@ -20,18 +20,25 @@ with_fx :reverb, room: 0.5 do
     if kick_play < 1 then stop end
     use_sample_defaults rate: 1, amp: 1.2, lpf: 100
     
-    with_fx :bpf do # :reverb :bpf
+    ##| sample_loop = "/Volumes/Roguentropy/Samples/lofi/voiceover/hit it.wav"
+    ##| sample sample_loop, amp: 4
+    ##| sleep 8
+    
+    10.times do
       
-      7.times do
-        sample :bd_tek, pan: rdist(0.25), rate: 0.5
-        sleep 1
+      with_fx :reverb do # :reverb :bpf
+        
+        7.times do
+          sample :bd_tek, pan: rdist(0.25)
+          sleep 1
+        end
+        
+        sample :bd_klub
+        sleep 0.5
+        
+        sample :bd_klub
+        sleep 0.5
       end
-      
-      sample :bd_klub
-      sleep 0.5
-      
-      sample :bd_klub
-      sleep 0.5
     end
     
   end
@@ -86,45 +93,50 @@ with_fx :reverb, room: 0.5 do
   
 end
 
+
+
 # bass ##################
 
-live_loop :bass, sync: :kick do
+live_loop :bass, sync: :met do
   if bass_play < 1 then stop end
   use_synth_defaults release: 0.1, sustain: 0.125, amp: 0.4
-  n = :c2
-  s = [:sine].choose
   
-  ##| n = :g1
-  ##| s = [:blade, :bass_foundation].choose
+  ##| n = :c2
+  ##| s = [:sine].choose
   
+  n = :g1
+  s = [:blade, :bass_foundation].choose
   
-  synth s, note: n
-  sleep 0.375
-  synth s, note: n
-  sleep 0.125
-  synth s, note: n
-  sleep 0.25
-  synth s, note: n
-  sleep 0.25
-  synth s, note: n
-  sleep 0.25
-  synth s, note: n
-  sleep 0.25
-  synth s, note: n
-  sleep 0.25
-  synth s, note: n if [false, true].tick
-  sleep 0.25
+  with_fx :wobble, mix: 0.5 do
+    
+    synth s, note: n
+    sleep 0.375
+    synth s, note: n
+    sleep 0.125
+    synth s, note: n
+    sleep 0.25
+    synth s, note: n
+    sleep 0.25
+    synth s, note: n
+    sleep 0.25
+    synth s, note: n
+    sleep 0.25
+    synth s, note: n
+    sleep 0.25
+    synth s, note: n if [false, true].tick
+    sleep 0.25
+  end
 end
 
-sample_loop = "/volumes/roguentropy/samples/indian/carnatic-vocal.wav"
-live_loop :sample, sync: :kick do
+carnatic_vocal = "/volumes/roguentropy/samples/indian/carnatic-vocal.wav"
+live_loop :sample, sync: :met do
   if sample_play < 1 then stop end
   
   2.times do
     with_fx :reverb do
       a = 8 # 8 10 20
       8.times do
-        sample sample_loop, onset: a, amp: 0.5, beat_stretch: 11
+        sample carnatic_vocal, onset: a, amp: 0.9, beat_stretch: 11
         sleep 0.5
         a+=1
       end

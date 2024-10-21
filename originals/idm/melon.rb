@@ -1,17 +1,37 @@
 use_bpm 150
 
+set_volume! 5
+
 live_loop :vocal do
   ##| stop
-  with_fx [:slicer].choose, mix: 0.4 do
+  with_fx [:slicer].choose, mix: 0.4, amp: 1.5 do
     
-    sample "/Volumes/Roguentropy/Samples/memes/sapne.wav", amp: 0.8
+    sample "/Volumes/Roguentropy/Samples/memes/under_water.wav"
+    sleep 15
     
-    sleep 100
+    15.times do
+      with_fx :reverb do
+        sample "/Volumes/Roguentropy/Samples/memes/under_water.wav", start: 0.93
+        sleep 2
+      end
+    end
     
   end
 end
 
-sleep 10
+sleep 15
+
+sample_loop = "/Volumes/Roguentropy/Samples/lofi/voiceover/will you hear me out please.wav"
+sample sample_loop
+sleep 8
+
+
+live_loop :techno, sync: :arovane_beat, delay: 16 do
+  with_fx :bitcrusher, mix: 0.6 do
+    sample "/Volumes/Roguentropy/Samples/drum_loops/techno/2.wav", beat_stretch: 32
+    sleep 32
+  end
+end
 
 live_loop :arovane_beat do
   ##| stop
