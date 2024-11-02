@@ -527,6 +527,17 @@ live_loop :drum do
 end
 
 
+# Sliced garzul
+live_loop :breakbeat, sync: :kick do
+  ##| stop
+  with_fx :slicer, phase: 1.75, wave: 0, mix: 1.0 do # :hpf
+    sample :loop_garzul, beat_stretch: 16, amp: 1
+    sleep 16
+  end
+end
+
+
+
 # Random Percussion
 
 live_loop :perc do

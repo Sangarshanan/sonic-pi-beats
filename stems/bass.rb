@@ -259,5 +259,16 @@ live_loop :bassline do
 end
 
 
+# beep
+live_loop :beep do
+  ##| stop
+  with_fx :reverb, room: 0.9 do
+    with_fx :slicer, phase: 1, wave: 1, mix: 1.0 do
+      synth :hoover, note: [:Db4, :G3, :Bb3, :F4].ring.tick, attack: 2, release: 4, amp: 0.5
+      sleep 6
+    end
+  end
+end
+
 
 

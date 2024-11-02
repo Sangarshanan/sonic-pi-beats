@@ -4,39 +4,49 @@ vocal_loop1 = "/Volumes/Roguentropy/Samples/acapella/pookal-pookum.wav"
 live_loop :vocal  do
   ##| stop
   
-  sample vocal_loop1, beat_stretch: 120, finish: 0.28
-  sleep 30
+  sample vocal_loop1, beat_stretch: 150, finish: 0.28
+  sleep 36
   
   
-  ##| 4.times do
+  4.times do
+    
+    sample vocal_loop1, beat_stretch: 150, start: 0.213, finish: 0.25
+    sleep 4
+  end
   
-  ##|   sample vocal_loop1, beat_stretch: 120, start: 0.213, finish: 0.25
-  ##|   sleep 4
-  ##| end
-  
-  ##| sample vocal_loop1, beat_stretch: 120, start: 0.15, finish: 0.215
-  ##| sleep 8
+  sample vocal_loop1, beat_stretch: 150, start: 0.15, finish: 0.215
+  sleep 8
   
   
-  ##| 4.times do
+  4.times do
+    
+    sample vocal_loop1, beat_stretch: 150, start: 0.213, finish: 0.25
+    sleep 4
+  end
   
-  ##|   sample vocal_loop1, beat_stretch: 120, start: 0.213, finish: 0.25
-  ##|   sleep 4
-  ##| end
   
-  ##| sample vocal_loop1, beat_stretch: 120, start: 0.901, rate: -1
-  ##| sleep 12
+  ##| sample vocal_loop1, beat_stretch: 140, start: 0.285, finish: 0.4
+  ##| sleep 16
   
-  ##| 2.times do
-  ##|   sample vocal_loop1, beat_stretch: 120, start: 0.9, finish: 0.92, rate: -1
+  ##| sample vocal_loop1, beat_stretch: 140, start: 0.48, finish: 0.62
+  ##| sleep 16
+  
+  ##| sample vocal_loop1, beat_stretch: 140, start: 0.62, finish: 0.71
+  ##| sleep 16
+  
+  ##| sample vocal_loop1, beat_stretch: 150, start: 0.72, finish: 0.79, rate: -1
+  ##| sleep 10
+  
+  ##| 5.times do
+  ##|   sample vocal_loop1, beat_stretch: 150, start: 0.78, finish: 0.79, rate: -1
   ##|   sleep 2
   ##| end
   
 end
 
-trap_loop1 = "/Volumes/Roguentropy/Samples/drum_loops/Trap/loop4.wav"
-live_loop :trap_loop1, delay: 34 do
-  stop
+trap_loop1 = "/Volumes/Roguentropy/Samples/drum_loops/Trap/loop4.wav" # loop3, 4
+live_loop :trap_loop1 do
+  ##| stop ,delay: 40
   with_fx :reverb do #  :bpf :hpf
     with_fx :band_eq do
       sample trap_loop1, beat_stretch: 32
