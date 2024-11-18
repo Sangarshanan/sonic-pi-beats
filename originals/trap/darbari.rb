@@ -1,5 +1,7 @@
 use_bpm 120
 
+set_volume! 3
+
 vocal_loop1 = "/Volumes/Roguentropy/Samples/acapella/pookal-pookum.wav"
 live_loop :vocal  do
   ##| stop
@@ -25,32 +27,28 @@ live_loop :vocal  do
   end
   
   
-  ##| sample vocal_loop1, beat_stretch: 140, start: 0.285, finish: 0.4
-  ##| sleep 16
+  ##| 2.times do
+  ##|   sample vocal_loop1, beat_stretch: 150, start: 0.9
+  ##|   sleep 10
   
-  ##| sample vocal_loop1, beat_stretch: 140, start: 0.48, finish: 0.62
-  ##| sleep 16
+  ##|   sample vocal_loop1, beat_stretch: 150, start: 0.72, finish: 0.79, rate: 1
+  ##|   sleep 10
+  ##| end
   
-  ##| sample vocal_loop1, beat_stretch: 140, start: 0.62, finish: 0.71
-  ##| sleep 16
-  
-  ##| sample vocal_loop1, beat_stretch: 150, start: 0.72, finish: 0.79, rate: -1
-  ##| sleep 10
-  
-  ##| 5.times do
-  ##|   sample vocal_loop1, beat_stretch: 150, start: 0.78, finish: 0.79, rate: -1
-  ##|   sleep 2
+  ##| 4.times do
+  ##|   sample vocal_loop1, start: 0.764, finish: 0.78
+  ##|   sleep 4
   ##| end
   
 end
 
 trap_loop1 = "/Volumes/Roguentropy/Samples/drum_loops/Trap/loop4.wav" # loop3, 4
-live_loop :trap_loop1 do
-  ##| stop ,delay: 40
-  with_fx :reverb do #  :bpf :hpf
+live_loop :trap_loop1 ,delay: 40 do
+  ##| stop
+  with_fx :band_eq do #  :bpf :hpf
     with_fx :band_eq do
       sample trap_loop1, beat_stretch: 32
-      sleep 8
+      sleep 32
     end
   end
 end

@@ -1,6 +1,6 @@
 use_bpm 120
 
-###### Techno/D&B #####
+###### Algorave 1 Bangalore Techno/D&B #####
 
 live_loop :hollow do
   invert=  [0, 1, 2].choose

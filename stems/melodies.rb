@@ -192,6 +192,20 @@ with_fx :ping_pong do
   end
 end
 
+
+# lofi melody
+pm = "/Volumes/Roguentropy/samples/Melody/lofi/GMaj.wav"
+live_loop :jazz do
+  ##| stop
+  with_fx :reverb do
+    with_fx :ping_pong do
+      sample pm, beat_stretch: 30
+      sleep 30
+    end
+  end
+end
+
+
 # Chords with pitch shift
 
 with_fx :pitch_shift, pitch: -3.9, reps: 2 do
