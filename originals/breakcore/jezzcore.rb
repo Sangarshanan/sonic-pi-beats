@@ -29,6 +29,14 @@ live_loop :pm, sync: :synth_glitch do
     
     sample pm, beat_stretch: 70, start: 0.3, finish: 0.35
     sleep 5
+
+
+    sp_m = "/Volumes/Roguentropy/set-dosa/other.wav"
+
+    ##| with_fx :reverb, mix: 0.3 do
+    ##|   sample sp_m, beat_stretch: 10
+    ##|   sleep 10
+    ##| end
     
   end
 end

@@ -2,6 +2,12 @@ set_volume! 2
 
 use_bpm 100
 
+live_loop :bass_drum do
+  ##| stop
+  sample :bd_haus, cutoff: 70, amp: 2
+  sleep 1
+end
+
 live_loop :amen_break, sync: :bass_drum do
   ##| stop
   a = rrand(0.50, 0.75)
@@ -17,12 +23,6 @@ live_loop :amen_break, sync: :bass_drum do
     end
     sleep 2
   end
-end
-
-live_loop :bass_drum do
-  ##| stop
-  sample :bd_haus, cutoff: 70, amp: 2
-  sleep 1
 end
 
 live_loop :landing, sync: :bass_drum do

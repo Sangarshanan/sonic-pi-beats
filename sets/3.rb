@@ -37,19 +37,19 @@ end
 """
 
 # SAMPLES
-dd1 = "/Users/sangarshanan/Downloads/set-dosa/misc/dance-daddy_v.wav"
-dd_other = "/Users/sangarshanan/Downloads/set-dosa/misc/dance_other.wav"
-dd2 = "/Users/sangarshanan/Downloads/set-dosa/misc/dd_beat.wav"
-vocal_loop1 = "/Users/sangarshanan/Downloads/Samples/acapella/pookal-pookum.wav"
-dis = "/Users/sangarshanan/Downloads/Samples/drum_loops/misc/distorted1.wav"
-chill_dub = "/Users/sangarshanan/Downloads/Samples/drum_loops/dubstep/chill.wav"
-sp_m = "/Users/sangarshanan/Downloads/set-dosa/other.wav"
-sp_2 = "/Users/sangarshanan/Downloads/set-dosa/sleepy2.wav"
-sp_2_other = "/Users/sangarshanan/Downloads/set-dosa/other_2.wav"
-spo1 = "/Users/sangarshanan/Downloads/set-dosa/btbb1.wav"
-spo2 = "/Users/sangarshanan/Downloads/set-dosa/btbb2.wav"
-clerb = "/Users/sangarshanan/Downloads/Samples/memes/clerb.mp3"
-run_file "/Users/sangarshanan/Downloads/set-dosa/modules.rb"
+dd1 = "/Volumes/Roguentropy/set-dosa/misc/dance-daddy_v.wav"
+dd_other = "/Volumes/Roguentropy/set-dosa/misc/dance_other.wav"
+dd2 = "/Volumes/Roguentropy/set-dosa/misc/dd_beat.wav"
+vocal_loop1 = "/Volumes/Roguentropy/Samples/acapella/pookal-pookum.wav"
+dis = "/Volumes/Roguentropy/Samples/drum_loops/misc/distorted1.wav"
+chill_dub = "/Volumes/Roguentropy/Samples/drum_loops/dubstep/chill.wav"
+sp_m = "/Volumes/Roguentropy/set-dosa/other.wav"
+sp_2 = "/Volumes/Roguentropy/set-dosa/sleepy2.wav"
+sp_2_other = "/Volumes/Roguentropy/set-dosa/other_2.wav"
+spo1 = "/Volumes/Roguentropy/set-dosa/btbb1.wav"
+spo2 = "/Volumes/Roguentropy/set-dosa/btbb2.wav"
+clerb = "/Volumes/Roguentropy/Samples/memes/clerb.mp3"
+run_file "/Volumes/Roguentropy/set-dosa/modules.rb"
 # METRONOME
 live_loop :met do
   sleep 0.937
@@ -134,7 +134,7 @@ live_loop :sleep_p, sync: :hollow  do
   # make 14.8 before running next time
   # the comment out everything except the last part, uncomment knob3
   
-  ##| sp_full = "/Users/sangarshanan/Downloads/set-dosa/sleepy_full.wav"
+  ##| sp_full = "/Volumes/Roguentropy/set-dosa/sleepy_full.wav"
   ##| sample sp_full, amp: 3, beat_stretch: 330
   ##| sleep 330
   
@@ -174,7 +174,7 @@ live_loop :break1, sync: :hollow do
   
   ##| for darbari
   
-  ##| trap_loop1 = "/Users/sangarshanan/Downloads/Samples/drum_loops/Trap/loop4.wav" # 3, 4
+  ##| trap_loop1 = "/Volumes/Roguentropy/Samples/drum_loops/Trap/loop4.wav" # 3, 4
   ##| with_fx :band_eq, amp: 3 do #  :bpf :hpf
   ##|   sample trap_loop1, beat_stretch: 30
   ##|   sleep 30
@@ -258,7 +258,7 @@ live_loop :ytp, sync: :hollow  do
     sleep 15
   end
   
-  ##| ytp_f = "/Users/sangarshanan/Downloads/set-dosa/misc/YorktownPuddle.wav"
+  ##| ytp_f = "/Volumes/Roguentropy/set-dosa/misc/YorktownPuddle.wav"
   ##| sample ytp_f, amp: 5
   ##| sleep sample_duration ytp_f
     
@@ -276,7 +276,7 @@ end
 
 live_loop :full_beat1, sync: :hollow do
   stop
-  no = "/Users/sangarshanan/Downloads/Samples/drum_loops/techno/1.wav"
+  no = "/Volumes/Roguentropy/Samples/drum_loops/techno/1.wav"
   with_fx [:ixi_techno, :band_eq].choose  do # :ixi_techno, :band_eq
     sample no, amp: 3, beat_stretch: 30
     sleep 30
@@ -319,7 +319,7 @@ end
 #### Konnakol & Break ####
 
 
-bm1 = "/Users/sangarshanan/Downloads/set-dosa/1/BlackMagic/original.mp3"
+bm1 = "/Volumes/Roguentropy/set-dosa/1/BlackMagic/original.mp3"
 
 live_loop :black_magic, sync: :full_beat1  do
   stop
@@ -347,8 +347,8 @@ end
 live_loop :diagonal, sync: :hollow  do
   stop
   
-  f1 = "/Users/sangarshanan/Downloads/set-dosa/1/Diagonal_rmx/1.wav"
-  full = "/Users/sangarshanan/Downloads/set-dosa/1/Diagonal_rmx/full_audio.wav"
+  f1 = "/Volumes/Roguentropy/set-dosa/1/Diagonal_rmx/1.wav"
+  full = "/Volumes/Roguentropy/set-dosa/1/Diagonal_rmx/full_audio.wav"
   
   with_fx :hpf, mix: 0.9 do
     sample f1, beat_stretch: 7.5, amp: 2.5
@@ -368,7 +368,7 @@ live_loop :diagonal, sync: :hollow  do
   
 end
 
-chanpam = "/Users/sangarshanan/Downloads/set-dosa/jungle.wav"
+chanpam = "/Volumes/Roguentropy/set-dosa/jungle.wav"
 live_loop :champam, sync: :diagonal do
   stop
   
@@ -382,7 +382,7 @@ live_loop :champam, sync: :diagonal do
   
 end
 
-ld1 = "/Users/sangarshanan/Downloads/set-dosa/chae_liquid_dream/ld1.wav"
+ld1 = "/Volumes/Roguentropy/set-dosa/chae_liquid_dream/ld1.wav"
 live_loop :ld1, sync: :champam do
   stop
   
@@ -397,7 +397,7 @@ live_loop :ld1, sync: :champam do
   
 end
 
-yaku = "/Users/sangarshanan/Downloads/set-dosa/Yaku.wav"
+yaku = "/Volumes/Roguentropy/set-dosa/Yaku.wav"
 live_loop :yaku, sync: :ld1 do
   stop
   

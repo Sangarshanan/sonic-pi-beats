@@ -3,11 +3,10 @@ use_bpm 120
 live_loop :break, sync: :beat1 do
   ##| stop
   with_fx :reverb do
-    sample "/Users/sangarshanan/Downloads/samples/drum_loops/dnb/1.wav", beat_stretch: 10
+    sample "/Volumes/Roguentropy/samples/drum_loops/dnb/1.wav", beat_stretch: 10
     sleep 10
   end
 end
-
 
 def m_play_arpeggio(p_tonic: 60, p_name: :maj, p_length: 3, p_invert: 0, p_sleep: 2,
                     p_type: 0, p_random: 0, p_has_basenote: false, p_has_droplastnote: true)
