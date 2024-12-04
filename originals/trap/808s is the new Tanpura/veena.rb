@@ -1,6 +1,6 @@
 use_bpm 120
 
-veena = "/Users/sangarshanan/Downloads/samples/Indian/veena1.wav"
+veena = "/Volumes/Roguentropy/Samples/Indian/veena1.wav"
 
 live_loop :veena do
   ##| stop
@@ -55,7 +55,7 @@ live_loop :veena do
 end
 
 
-vocal = "/Users/sangarshanan/Downloads/samples/melody/Lofi/voi1.wav"
+vocal = "/Volumes/Roguentropy/Samples/melody/Lofi/voi1.wav"
 live_loop :vocal2  do
   stop
   with_fx :reverb, amp: 3 do
@@ -73,7 +73,7 @@ live_loop :vocal2  do
 end
 
 
-beat2 = "/Users/sangarshanan/Downloads/samples/songs/chaudhary_music.wav"
+beat2 = "/Volumes/Roguentropy/Samples/songs/chaudhary_music.wav"
 live_loop :chaudary do
   ##| stop
   with_fx :reverb do
@@ -83,7 +83,7 @@ live_loop :chaudary do
 end
 
 
-trap_loop1 = "/Users/sangarshanan/Downloads/samples/drum_loops/Trap/5.wav"
+trap_loop1 = "/Volumes/Roguentropy/Samples/drum_loops/Trap/5.wav"
 live_loop :trap_loop1, sync: :veena  do
   ##| stop
   with_fx :reverb do
@@ -92,7 +92,7 @@ live_loop :trap_loop1, sync: :veena  do
   end
 end
 
-bass = "/Users/sangarshanan/Downloads/samples/bass/acid.wav"
+bass = "/Volumes/Roguentropy/Samples/bass/acid.wav"
 live_loop :acid  do
   stop
   sample bass, beat_stretch: 64, amp: 2
@@ -100,7 +100,7 @@ live_loop :acid  do
 end
 
 
-drum_loop = "/Users/sangarshanan/Downloads/samples/Lofi/Loops/lofi drum loop (4).wav"
+drum_loop = "/Volumes/Roguentropy/Samples/Lofi/Loops/lofi drum loop (4).wav"
 live_loop :dtrap2, sync: :acid  do
   stop
   sample drum_loop, amp: 5, beat_stretch: 16

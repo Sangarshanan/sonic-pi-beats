@@ -22,3 +22,14 @@ live_loop :trigger_sample do
     kill get(:kv)
   end
 end
+
+
+# LIive Guitar
+
+with_fx :flanger, mix: 0.8 do
+  with_fx :compressor, mix: 0.7 do
+    use_sched_ahead_time 0 #reduces latency to a minimum
+    use_real_time
+    live_audio :guitar, amp: 4.5
+  end
+end

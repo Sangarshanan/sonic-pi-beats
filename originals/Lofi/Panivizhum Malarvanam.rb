@@ -1,12 +1,11 @@
 use_bpm 100
 
-start = "/Users/sangarshanan/Downloads/samples/Songs/pvm_0.wav"
-
-vocal = "/Users/sangarshanan/Downloads/samples/Songs/PVM.wav"
-tune = "/Users/sangarshanan/Downloads/samples/Songs/pvm2.wav"
-vocal2 = "/Users/sangarshanan/Downloads/samples/Songs/pvm3.wav"
-vocal3 = "/Users/sangarshanan/Downloads/samples/Songs/pvm4.wav"
-vocal4 = "/Users/sangarshanan/Downloads/samples/Songs/pvm51_c.wav"
+start = "/Volumes/Roguentropy/Samples/Songs/pvm_0.wav"
+vocal = "/Volumes/Roguentropy/Samples/Songs/PVM.wav"
+tune = "/Volumes/Roguentropy/Samples/Songs/pvm2.wav"
+vocal2 = "/Volumes/Roguentropy/Samples/Songs/pvm3.wav"
+vocal3 = "/Volumes/Roguentropy/Samples/Songs/pvm4.wav"
+vocal4 = "/Volumes/Roguentropy/Samples/Songs/pvm51_c.wav"
 
 
 live_loop :start do
@@ -16,7 +15,7 @@ end
 
 
 live_loop :vocal, sync: :start do
-  ##| stop
+  stop
   
   with_fx :reverb, mix: 0.6 do
     sample vocal, start: 0.05, beat_stretch: 10, rate: 1, amp: 2
@@ -87,25 +86,34 @@ live_loop :vocal, sync: :start do
   
 end
 
-
-live_loop :flute, sync: :vocal do
-  stop
+flute = "/Volumes/Roguentropy/Samples/Songs/pvm_loop1.wav"
+live_loop :flute, sync: :start do
+  ##| stop
   
-  with_fx :flanger, mix: 0.5, amp: 1.1 do
+  with_fx :lpf, mix: 0.5, amp: 1.2 do
     
-    sample flute, beat_stretch: 9, finish: 0.44
-    sleep 3.75
+    ##| with_fx :lpf, mix: 0.9 do
+    ##|   sample flute, beat_stretch: 22, start: 0.55, finish: 0.72
+    ##|   sleep 5
+    ##| end
     
-    sample flute, beat_stretch: 9, start: 0.35, finish: 0.5
-    sleep 1.25
-    
-    sample flute, beat_stretch: 9, start: 0.45
+    sample flute, beat_stretch: 22, start: 0.32, finish: 0.43
     sleep 5
+    
+    ##| sample flute, beat_stretch: 22, start: 0.43, finish: 0.54
+    ##| sleep 5
+    
+    ##| sample flute, beat_stretch: 22, start: 0.32, finish: 0.43
+    ##| sleep 5
+    
+    ##| sample flute, beat_stretch: 22, start: 0.77, finish: 0.89
+    ##| sleep 5
+    
   end
   
 end
 
-drum_loop2 = "/Users/sangarshanan/Downloads/samples/drum_loops/lofi/1-70.wav"
+drum_loop2 = "/Volumes/Roguentropy/Samples/drum_loops/lofi/1-70.wav"
 live_loop :drumloop2, sync: :start do
   ##| stop
   with_fx :reverb do
@@ -115,9 +123,9 @@ live_loop :drumloop2, sync: :start do
 end
 
 
-drum_loop1 = "/Users/sangarshanan/Downloads/samples/drum_loops/lofi/1_75.wav"
+drum_loop1 = "/Volumes/Roguentropy/Samples/drum_loops/lofi/1_75.wav"
 live_loop :drumloop1, sync: :start do
-  ##| stop
+  stop
   with_fx :reverb do
     sample drum_loop1, beat_stretch: 20, amp: 5
     sleep 20
@@ -127,32 +135,19 @@ end
 
 ###
 
-sample1 = "/Users/sangarshanan/Downloads/samples/Songs/pvm_misc1.wav"
+sample1 = "/Volumes/Roguentropy/Samples/Songs/pvm_misc1.wav"
 
-live_loop :repeat_loop do
-  
+live_loop :repeat_loop, sync: :start do
+  stop
   with_fx :reverb, mix: 0.5 do
     
-    sample sample1, beat_stretch: 10, finish: 0.265
+    sample sample1, beat_stretch: 10, finish: 0.2
     sleep 2.5
-    sample sample1, beat_stretch: 10, finish: 0.265, rate: -1
-    sleep 2.5
-   
+    
+    ##| sample sample1, beat_stretch: 10, finish: 0.265, rate: -1
+    ##| sleep 2.5
+    
   end
   
 end
-
-live_loop :sample1, sync: :drumloop1 do
-  stop
-  sample sample1, finish: 0.25, cutoff: 90
-  sleep 2.5
-end
-
-
-live_loop :sample2, sync: :sample1 do
-  stop
-  sleep 2.5
-  sample sample1, finish: 0.25, cutoff: 90, rate: 2
-end
-
 
