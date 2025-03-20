@@ -34,25 +34,63 @@ end
 
 
 bass1 = "/Volumes/Roguentropy/Samples/bass/atonal.wav"
-live_loop :bss_loop do
-  ##| stop
+live_loop :bss_loop, sync: :vocal1 do
+  stop
   effect = [:ixi_techno, :reverb, :wobble].choose
   1.times do
     with_fx effect do
-      sample bass1, beat_stretch: 10, finish: 0.5, amp: 0.8
+      sample bass1, beat_stretch: 10, finish: 0.5, amp: 0.3
       sleep 5
     end
   end
 end
 
-live_loop :dandb, sync: :bss_loop do
-  ##| stop
+live_loop :dandb, sync: :vocal1 do
+  stop
   s = "/Volumes/Roguentropy/Samples/drum_loops/dnb/liquid-2.wav"
   with_fx :reverb do
     sample s, beat_stretch: 20, finish: 0.5 # beat 10, sleep 5
     sleep 10
   end
 end
+
+vocal_loop1 = "/Volumes/Roguentropy/Samples/acapella/charukesi.mp3"
+live_loop :vocal1  do
+  ##| stop
+  
+  with_fx :reverb do    
+    
+    ##| sample vocal_loop1, beat_stretch: 90, start: 0.33, finish: 0.39
+    ##| sleep 5
+    ##| sample vocal_loop1, beat_stretch: 90, start: 0.13, finish: 0.19
+    ##| sleep 5
+    
+    
+    ##| sample vocal_loop1, beat_stretch: 90, start: 0.59, finish: 0.65
+    ##| sleep 5
+    ##| sample vocal_loop1, beat_stretch: 90, start: 0.65, finish: 0.7
+    ##| sleep 5
+    
+    
+    sample vocal_loop1, beat_stretch: 90, start: 0.79, finish: 0.842
+    sleep 5
+    sample vocal_loop1, beat_stretch: 90, start: 0.85, finish: 0.9
+    sleep 5
+    
+  end
+  
+end
+
+
+live_loop :slow_break, sync: :vocal1 do
+  ##| stop
+  jungle =  "/Volumes/Roguentropy/samples/drum_loops/dnb/jungle.wav"
+  with_fx :reverb do
+    sample jungle, beat_stretch: 5
+    sleep 5
+  end
+end
+
 
 live_loop :bass_drum do
   ##| stop
