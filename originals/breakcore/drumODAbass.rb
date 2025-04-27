@@ -1,5 +1,3 @@
-set_volume! 2
-
 use_bpm 100
 
 live_loop :bass_drum do
@@ -12,7 +10,7 @@ live_loop :amen_break, sync: :bass_drum do
   ##| stop
   a = rrand(0.50, 0.75)
   if a < 0.6
-    sample "/Users/sangarshanan/Downloads/samples/drum_loops/dnb/broken_amen.wav", finish: 0.5, beat_stretch: 16, rate: 0.5, amp: 2
+    sample "/Volumes/Roguentropy/samples/drum_loops/dnb/broken_amen.wav", finish: 0.5, beat_stretch: 16, rate: 0.5, amp: 2
     sleep 8
   else
     effect = [:slicer, :reverb, :ixi_techno].choose
@@ -26,7 +24,7 @@ live_loop :amen_break, sync: :bass_drum do
 end
 
 live_loop :landing, sync: :bass_drum do
-  ##| stop
+  stop
   bass_line = (knit :d1, 5, [:c1, :c2, :c3, :c4, :c5].choose, 1)
   with_fx :slicer, phase: [0.25, 0.5].choose, invert_wave: 1, wave: 0 do
     s = synth :square, note: bass_line.tick, sustain: 4, cutoff: 60
@@ -45,45 +43,35 @@ live_loop :pulpul do
   end
 end
 
-vocal = "/Users/sangarshanan/Downloads/samples/Indian/Konnakkol1.wav"
+vocal = "/Volumes/Roguentropy/samples/Indian/Konnakkol1.wav"
 live_loop :vocal, sync: :bass_drum do
-  ##| stop
+  stop
   with_fx :slicer, mix: 0.3 do
     sample vocal, beat_stretch: 90, start: 0.40, finish: 0.445, amp: 2
     sleep 1
   end
 end
 
-sample1 = "/Users/sangarshanan/Downloads/samples/Songs/pvm_misc1.wav"
-live_loop :sample1, sync: :amen_break do
-  ##| stop
-  with_fx :reverb do
-    sample sample1, beat_stretch: 8, amp: 0.5, finish: 0.5
-    sleep 2
-  end
-end
-
-
-sample2 = "/Users/sangarshanan/Downloads/samples/Songs/pvm_flow.wav"
-live_loop :sample2 do
+sample2 = "/Volumes/Roguentropy/samples/Songs/pvm_flow.wav"
+live_loop :sample2, sync: :amen_break do
   ##| stop
   with_fx :reverb do
     
     sample sample2, beat_stretch: 8, amp: 2, finish: 0.5
-    sleep 4
+    sleep 16
     
-    4.times do
-      sample sample2, beat_stretch: 8, amp: 2, start: 0.5, finish: 0.55
-      sleep 1
-    end
+    ##| 4.times do
+    ##|   sample sample2, beat_stretch: 8, amp: 2, start: 0.5, finish: 0.55
+    ##|   sleep 1
+    ##| end
     
-    sample sample2, beat_stretch: 8, amp: 2, start: 0.5, finish: 0.74
-    sleep 2
+    ##| sample sample2, beat_stretch: 8, amp: 2, start: 0.5, finish: 0.74
+    ##| sleep 2
     
-    4.times do
-      sample sample2, beat_stretch: 8, amp: 2, start: 0.65, finish: 0.74, rate: 1
-      sleep 1
-    end
+    ##| 4.times do
+    ##|   sample sample2, beat_stretch: 8, amp: 2, start: 0.65, finish: 0.74, rate: 1
+    ##|   sleep 1
+    ##| end
     
   end
 end
