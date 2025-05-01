@@ -290,3 +290,28 @@ live_loop :god_player do
 end
 
 
+# Funky acid
+
+use_bpm 120
+
+live_loop :bassline1 do
+  use_synth :prophet
+  use_synth_defaults release: rrand(0.05, 0.25), amp: rrand(1.5, 2)
+  notes = scale(:d2, :minor)
+  play notes.tick, cutoff: rrand(40, 120)
+  sleep 0.25
+end
+
+live_loop :bassline2 do
+  use_synth :tb303
+  use_synth_defaults release: rrand(0.25, 0.5), amp: rrand(1.5, 2)
+  
+  if rand(1) > 0.65 then
+    notes = scale(:d2, :minor) + (ring :r)
+  else
+    notes = scale(:d1, :minor).shuffle + (ring :r)
+  end
+  
+  play notes.tick, cutoff: rrand(40, 120)
+  sleep 0.25
+end
