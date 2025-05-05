@@ -22,7 +22,8 @@ live_loop :fading_bird do
 end
 
 
-live_loop :ambient_pad, delay: 4 do
+live_loop :ambient_pad, delay: 48 do
+  ##| stop
   with_fx :reverb, mix: 0.7, room: 0.8 do
     with_fx :slicer, phase: 8, wave: 1, mix: 0.3 do
       s = synth :hollow, note: :e2, sustain: 8, release: 4, amp: 8
@@ -34,10 +35,10 @@ live_loop :ambient_pad, delay: 4 do
   end
 end
 
-live_loop :glitches, sync: :acid_noise do
-  stop
+live_loop :glitches, delay: 24 do
+  ##| stop
   hat = [:hat_psych, :mehackit_phone1, :glitch_perc4].choose
-  use_sample_defaults sustain: rrand(0, 0.05), finish: 0.1 # finish: 0.02, 0.1
+  use_sample_defaults sustain: rrand(0, 0.05), finish: 0.02 # finish: 0.02, 0.1
   dens = [1,1,2,1,4,6].choose
   density dens do
     with_fx :panslicer do
@@ -48,14 +49,14 @@ live_loop :glitches, sync: :acid_noise do
 end
 
 live_loop :acid_noise, sync: :fading_bird do
-  stop
+  ##| stop
   use_synth :tb303
   use_synth_defaults attack: 4, sustain: 12, release: 4
   4.times do
     with_fx :rbpf, centre: (scale(:e4, :minor_pentatonic, num_octaves: 3).choose), res: 0.95 do
       with_fx :slicer, phase: [0.35, 0.65, 0.85].choose do
         with_fx :slicer, phase: 0.25, pulse_width: 0.8, smooth: 0.1, invert_wave: 1 do
-          play :c1, amp: 5
+          play :c1, amp: 4
         end
       end
     end
@@ -64,52 +65,45 @@ live_loop :acid_noise, sync: :fading_bird do
 end
 
 live_loop :bassy_sound_effect, sync: :met do
-  stop
+  ##| stop
   with_fx :ixi_techno, phase: 0.5,res: 0.5,amp: 0.8,mix: 0.8 do
     synth :fm,note: hz_to_midi(70)  ,release: 20
   end
   sleep 16
 end
 
-live_loop :bass_drum, sync: :bassy_sound_effect do
-  stop
-  sample :bd_haus, cutoff: 70, amp: 3
-  sleep 1
-end
 
-live_loop :glitchy_melody, sync: :bassy_sound_effect do
+live_loop :glitchy_melody, sync: :ambient_pad do
   stop
+  
+  amp = 0.6
   with_fx :bitcrusher, bits: 8, sample_rate: 4000 do
     with_fx :echo, phase: 0.25, decay: 2, mix: 0.4 do
       16.times do
         n = (scale :e3, :minor_pentatonic, num_octaves: 2).choose
-        synth :beep, note: n, release: 0.1, amp: rrand(1, 2)
+        synth :beep, note: n, release: 0.1, amp: amp
         sleep [0.25, 0.5].choose
         
         if one_in(4)
-          synth :pluck, note: n + 0.3, release: 0.2, amp: 0.3
+          synth :pluck, note: n + 0.3, release: 0.2, amp: amp
         end
         
-        sleep [0.25, 0.5, 0.75].choose
+        
+        sleep 2
+        ##| sleep [0.25, 0.5, 0.75].choose
       end
     end
   end
 end
 
-live_loop :arovane_c, sync: :acid_noise do
-  stop
-  with_fx :compressor, mix: 0.8 do
-    sample :arovane_beat_c, beat_stretch: 16
-  end
-  sleep 16
-end
-
 vocal1 = "/Volumes/Roguentropy/Samples/vocal/modi_ai.mp3"
 vocal2 = "/Volumes/Roguentropy/Samples/vocal/ai.mp3"
 
-live_loop :amen_break, sync: :ambient_pad do
-  stop
+live_loop :vocal, sync: :ambient_pad do
+  ##| stop
   
+  ## sleep 10000 # uncomment after playing
+
   with_fx :reverb, amp: 2 do # :reverb :hpf
     sample vocal1, finish: 0.18, beat_stretch: 90
     sleep 15
@@ -130,26 +124,37 @@ live_loop :amen_break, sync: :ambient_pad do
     sleep 3
   end
   
-  3.times do
+end
+
+live_loop :amen_break, sync: :vocal do
+  stop
+
+  2.times do
     effect = [:bitcrusher, :reverb, :octaver].choose
     p = [0.25, 0.5, 0.125].choose
     with_fx effect, phase: p, wave: 0, mix: rrand(0.4, 1) do
-      sample "/Volumes/Roguentropy/samples/drum_loops/dnb/amen_172_pew.wav", beat_stretch: 32, finish: 0.5
+      sample "/Volumes/Roguentropy/samples/drum_loops/dnb/amen_172_pew.wav", beat_stretch: 32, finish: 0.5, amp: 0.8
     end
     sleep 8
   end
   
 end
 
+live_loop :bass_drum, sync: :vocal do
+  stop
+  kick = "/Volumes/Roguentropy/Samples/808_drum_kit/kicks/808-Kicks01.wav"
+  sample kick, amp: 3 
+  sleep 1
+end
 
 rise1 = "/Volumes/Roguentropy/samples/rises/trickle.wav"
-live_loop :rise, sync: :ambient_pad do
+live_loop :rise, sync: :vocal do
   stop
-  
+
   sample rise1, amp: 0.5, beat_stretch: 64
   sleep 64
   
-  ##| sample rise1, amp: 0.5, beat_stretch: 64, finish: 0.35
-  ##| sleep 60
+  # sample rise1, amp: 0.5, beat_stretch: 64, finish: 0.35
+  # sleep 60
   
 end
